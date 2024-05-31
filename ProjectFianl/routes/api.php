@@ -94,6 +94,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('delete_student/{id}', 'delete_student')->name('delete.student')->middleware('can:delete.student');
         Route::get('delete_teacher/{id}', 'delete_teacher')->name('delete.teacher')->middleware('can:delete.teacher');
         Route::post('update_profile', 'update_profile')->name('update.profile');
+        Route::get('show_profile', 'show_profile')->name('show.profile');
+
     });
 });
 
