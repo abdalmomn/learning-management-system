@@ -12,6 +12,7 @@ class User_video_pivot extends Model
     protected $fillable = [
       'user_id',
       'video_id',
+       'watched',
     ];
     public function user() : belongsTo
     {
@@ -21,5 +22,10 @@ class User_video_pivot extends Model
     public function video() : belongsTo
     {
         return $this->belongsTo(Video::class);
+    }
+
+    public function course() : belongsTo
+    {
+        return $this->belongsTo(Course::class);
     }
 }

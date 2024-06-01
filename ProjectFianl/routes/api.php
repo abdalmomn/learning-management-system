@@ -112,7 +112,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('delete_quiz/{quiz_id}', 'delete_quiz')->name('delete.quiz')->middleware('can:delete.quiz');
         Route::get('show_quizzes', 'show_quizzes')->name('show.quiz')->middleware('can:show.quiz');
         Route::get('show_quizzes_with_question_and_answer', 'show_quizzes_with_question_and_answer')->name('show.quiz')->middleware('can:show.quiz');
-
+        Route::get('go_to_quiz/{course_id}', 'go_to_quiz')->name('show.quiz')->middleware('can:show.quiz');
+        Route::post('submit_quiz/{quiz_id}', 'submit_quiz')->name('submit.quiz');
+        Route::get('sh','sh');
     });
 
     //Routes for questions
@@ -122,7 +124,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('delete_question/{question_id}', 'delete_question')->name('delete.question')->middleware('can:delete.quiz');
         Route::get('show_question/{quiz_id}', 'show_question')->name('show.question')->middleware('can:show.quiz');
 
-
     });
     //Routes for answers
     Route::controller(AnswerController::class)->group(function (){
@@ -130,7 +131,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('delete_answer/{answer_id}','delete_answer')->name('delete.answer')->middleware('can:delete.quiz');
         Route::post('update_answer/{answer_id}','update_answer')->name('update.answer')->middleware('can:update.quiz');
         Route::get('show_answer/{question_id}', 'show_answer')->name('show.answer')->middleware('can:show.quiz');
-        Route::get('sh', 'sh')->name('show.answer');
 
     });
 });
