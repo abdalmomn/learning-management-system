@@ -98,6 +98,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('delete_student/{id}', 'delete_student')->name('delete.student')->middleware('can:delete.student');
         Route::get('delete_teacher/{id}', 'delete_teacher')->name('delete.teacher')->middleware('can:delete.teacher');
         Route::post('update_profile', 'update_profile')->name('update.profile');
+        Route::get('show_profile', 'show_profile')->name('show.profile');
+
     });
 });
 
@@ -109,6 +111,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('create_quiz/{course_id}', 'create_quiz')->name('create.quiz')->middleware('can:create.quiz');
         Route::get('delete_quiz/{quiz_id}', 'delete_quiz')->name('delete.quiz')->middleware('can:delete.quiz');
         Route::get('show_quizzes', 'show_quizzes')->name('show.quiz')->middleware('can:show.quiz');
+        Route::get('show_quizzes_with_question_and_answer', 'show_quizzes_with_question_and_answer')->name('show.quiz')->middleware('can:show.quiz');
 
     });
 
@@ -117,7 +120,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('create_question/{quiz_id}', 'create_question')->name('create.question')->middleware('can:create.quiz');
         Route::post('update_question/{question_id}', 'update_question')->name('update.question')->middleware('can:update.quiz');
         Route::get('delete_question/{question_id}', 'delete_question')->name('delete.question')->middleware('can:delete.quiz');
-        Route::get('sh', 'sh')->name('delete.question')->middleware('can:show.quiz');
+        Route::get('show_question/{quiz_id}', 'show_question')->name('show.question')->middleware('can:show.quiz');
 
 
     });
@@ -126,6 +129,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('create_answer/{question_id}','create_answer')->name('create.answer')->middleware('can:create.quiz');
         Route::get('delete_answer/{answer_id}','delete_answer')->name('delete.answer')->middleware('can:delete.quiz');
         Route::post('update_answer/{answer_id}','update_answer')->name('update.answer')->middleware('can:update.quiz');
+        Route::get('show_answer/{question_id}', 'show_answer')->name('show.answer')->middleware('can:show.quiz');
+        Route::get('sh', 'sh')->name('show.answer');
 
     });
 });
