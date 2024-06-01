@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('duration')->nullable();
             $table->integer('like')->default(0);
-            $table->integer('dis-like')->default(0);
+            $table->integer('dislike')->default(0);
             $table->integer('view')->default(0);
             $table->string('url');
             $table->timestamps();

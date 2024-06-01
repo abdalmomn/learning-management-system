@@ -207,108 +207,74 @@ class CourseService
     }
 
     //paid for course
-    public function paid_course($courseId):array
+    public function paid_course($courseId): array
     {
-        $course = Course::query()->where('id' , $courseId)->first();//get course
+        $userId = Auth::id();
+        $course = Course::query()
+            ->join('course_user_pivots', 'courses.id', '=', 'course_user_pivots.course_id')
+            ->join('users as teacher', function($join) {
+                $join->on('course_user_pivots.user_id', '=', 'teacher.id')
+                    ->where('course_user_pivots.paid', '=', 0);
+            })
+            ->join('users as student', function($join) use ($userId) {
+                $join->on('student.id', '=', DB::raw($userId));
+            })
+            ->where('courses.id', $courseId)
+            ->select(
+                'courses.id as course_id',
+                'courses.price as course_price',
+                'student.wallet as user_wallet',
+                'teacher.id as teacher_id',
+                'teacher.wallet as teacher_wallet',
+                'course_user_pivots.favorite as favorite_status',
+                'course_user_pivots.user_id as pivot_user_id'
+            )
+            ->first();
 
-        if ($course){
-            $course_id_from_pivot = Course_user_pivot::query()->
-            where('course_id' , $courseId)->pluck('course_id')->first();
+        if ($course) {
+            $userWallet = $course->user_wallet;
+            $coursePrice = $course->course_price;
+            $teacherWallet = $course->teacher_wallet;
+            $teacherId = $course->teacher_id;
+            $favoriteStatus = $course->favorite_status;
+            $pivotUserId = $course->pivot_user_id;
 
-            $user_id_from_pivot = Course_user_pivot::query()->
-            where('course_id' , $courseId)
-                ->where('user_id' , Auth::id())->pluck('user_id')->first();
+            if ($userWallet >= $coursePrice) {
+                $newUserWallet = $userWallet - $coursePrice;
+                $newTeacherWallet = $teacherWallet + $coursePrice;
 
-            $favorite_status = Course_user_pivot::query()->
-            where('course_id' , $courseId)
-                ->where('user_id' , Auth::id())->pluck('favorite')->first();
+                User::query()->where('id', $userId)->update(['wallet' => $newUserWallet]);
+                User::query()->where('id', $teacherId)->update(['wallet' => $newTeacherWallet]);
 
-            $course_price = Course::query()->where('id' , $courseId)->pluck('price')->first(); //get course price
-
-            $user_wallet = User::query()->where('id' , Auth::id())
-                ->pluck('wallet')->first();//get authenticated user wallet value
-
-            $teacher_id = Course_user_pivot::query()->where('course_id' , $courseId)->
-            where('paid' , 0)->pluck('user_id')->first(); //get teacher_id that have the course
-
-            $teacher_wallet = User::query()->where('id' , $teacher_id)
-                ->pluck('wallet')->first(); // get teacher wallet value
-
-            if ($user_wallet >= $course_price){
-                if (Auth::user()->hasRole('student')){
-                    if ($course_id_from_pivot && $user_id_from_pivot == Auth::id()){//if the course already exist => update
-                        $user_wallet = $user_wallet - $course_price;
-                        User::query()->where('id' , Auth::id())->update([
-                            'wallet' => $user_wallet
-                        ]);
-                        $teacher_wallet = $teacher_wallet + $course_price;
-                        User::query()->where('id' , $teacher_id)->update([
-                            'wallet' =>  $teacher_wallet
-                        ]);
-                        Course_user_pivot::query()->update([
-                            'favorite' => $favorite_status,
-                            'paid' => 1
-                        ]);}else{
-                        $user_wallet = $user_wallet - $course_price;
-                        User::query()->where('id' , Auth::id())->update([
-                            'wallet' => $user_wallet
-                        ]);
-                        $teacher_wallet = $teacher_wallet + $course_price;
-                        User::query()->where('id' , $teacher_id)->update([
-                            'wallet' =>  $teacher_wallet
-                        ]);
-                        Course_user_pivot::query()->create([
-                            'user_id' => Auth::id(),
-                            'course_id' => $courseId,
-                            'favorite' => 0,
-                            'paid' => 1
-                        ]);
-                    }
-                }else if (Auth::user()->hasRole('teacher')){
-                    if ($course_id_from_pivot && $user_id_from_pivot == Auth::id()){//if the course already exist => update
-
-                        $user_wallet = $user_wallet - $course_price;
-                        User::query()->where('id' , Auth::id())->update([
-                            'wallet' => $user_wallet
-                        ]);
-
-                        $teacher_wallet = $teacher_wallet + $course_price;
-                        User::query()->where('id' , $teacher_id)->update([
-                            'wallet' =>  $teacher_wallet
-                        ]);
-                        Course_user_pivot::query()->update([
-                            'favorite' => $favorite_status,
-                            'paid' => 1
-                        ]);
-                    }else{
-                        $user_wallet = $user_wallet - $course_price;
-                        User::query()->where('id' , Auth::id())->update([
-                            'wallet' => $user_wallet
-                        ]);
-                        $teacher_wallet = $teacher_wallet + $course_price;
-                        User::query()->where('id' , $teacher_id)->update([
-                            'wallet' =>  $teacher_wallet
-                        ]);
-                        Course_user_pivot::query()->create([
-                            'user_id' => Auth::id(),
-                            'course_id' => $courseId,
-                            'favorite' => 0,
-                            'paid' => 1
-                        ]);
-                    }
+                if ($pivotUserId == $userId) {
+                    // Update existing record
+                    Course_user_pivot::query()
+                        ->where('course_id', $courseId)
+                        ->where('user_id', $userId)
+                        ->update(['favorite' => $favoriteStatus, 'paid' => 1]);
+                } else {
+                    // Create new record
+                    Course_user_pivot::query()->create([
+                        'user_id' => $userId,
+                        'course_id' => $courseId,
+                        'favorite' => $favoriteStatus,
+                        'paid' => 1
+                    ]);
                 }
-                $message = 'course have been pay successfully';
+
+                $message = 'Course has been paid successfully';
                 $code = 200;
-            }else{
+            } else {
                 $course = [];
-                $message = 'you have run out of founds';
+                $message = 'You have run out of funds';
                 $code = 403;
             }
-        }else{
+        } else {
             $course = [];
-            $message = 'course not found';
+            $message = 'Course not found';
             $code = 404;
         }
+
         return [
             'course' => $course,
             'message' => $message,
@@ -316,8 +282,118 @@ class CourseService
         ];
     }
 
+    //paid for course
+//    public function paid_course($courseId):array
+//    {
+//        $course = Course::query()->where('id' , $courseId)->first();//get course
+//
+//        if ($course){
+//            $course_id_from_pivot = Course_user_pivot::query()->
+//            where('course_id' , $courseId)->pluck('course_id')->first();
+//
+//            $user_id_from_pivot = Course_user_pivot::query()->
+//            where('course_id' , $courseId)
+//                ->where('user_id' , Auth::id())->pluck('user_id')->first();
+//
+//            $favorite_status = Course_user_pivot::query()->
+//            where('course_id' , $courseId)
+//                ->where('user_id' , Auth::id())->pluck('favorite')->first();
+//
+//            $course_price = Course::query()->where('id' , $courseId)->pluck('price')->first(); //get course price
+//
+//            $user_wallet = User::query()->where('id' , Auth::id())
+//                ->pluck('wallet')->first();//get authenticated user wallet value
+//
+//            $teacher_id = Course_user_pivot::query()->where('course_id' , $courseId)->
+//            where('paid' , 0)->pluck('user_id')->first(); //get teacher_id that have the course
+//
+//            $teacher_wallet = User::query()->where('id' , $teacher_id)
+//                ->pluck('wallet')->first(); // get teacher wallet value
+//
+//            if ($user_wallet >= $course_price){
+//                if (Auth::user()->hasRole('student')){
+//                    if ($course_id_from_pivot && $user_id_from_pivot == Auth::id()){//if the course already exist => update
+//                        $user_wallet = $user_wallet - $course_price;
+//                        User::query()->where('id' , Auth::id())->update([
+//                            'wallet' => $user_wallet
+//                        ]);
+//                        $teacher_wallet = $teacher_wallet + $course_price;
+//                        User::query()->where('id' , $teacher_id)->update([
+//                            'wallet' =>  $teacher_wallet
+//                        ]);
+//                        Course_user_pivot::query()->update([
+//                            'favorite' => $favorite_status,
+//                            'paid' => 1
+//                        ]);}else{
+//                        $user_wallet = $user_wallet - $course_price;
+//                        User::query()->where('id' , Auth::id())->update([
+//                            'wallet' => $user_wallet
+//                        ]);
+//                        $teacher_wallet = $teacher_wallet + $course_price;
+//                        User::query()->where('id' , $teacher_id)->update([
+//                            'wallet' =>  $teacher_wallet
+//                        ]);
+//                        Course_user_pivot::query()->create([
+//                            'user_id' => Auth::id(),
+//                            'course_id' => $courseId,
+//                            'favorite' => 0,
+//                            'paid' => 1
+//                        ]);
+//                    }
+//                }else if (Auth::user()->hasRole('teacher')){
+//                    if ($course_id_from_pivot && $user_id_from_pivot == Auth::id()){//if the course already exist => update
+//
+//                        $user_wallet = $user_wallet - $course_price;
+//                        User::query()->where('id' , Auth::id())->update([
+//                            'wallet' => $user_wallet
+//                        ]);
+//
+//                        $teacher_wallet = $teacher_wallet + $course_price;
+//                        User::query()->where('id' , $teacher_id)->update([
+//                            'wallet' =>  $teacher_wallet
+//                        ]);
+//                        Course_user_pivot::query()->update([
+//                            'favorite' => $favorite_status,
+//                            'paid' => 1
+//                        ]);
+//                    }else{
+//                        $user_wallet = $user_wallet - $course_price;
+//                        User::query()->where('id' , Auth::id())->update([
+//                            'wallet' => $user_wallet
+//                        ]);
+//                        $teacher_wallet = $teacher_wallet + $course_price;
+//                        User::query()->where('id' , $teacher_id)->update([
+//                            'wallet' =>  $teacher_wallet
+//                        ]);
+//                        Course_user_pivot::query()->create([
+//                            'user_id' => Auth::id(),
+//                            'course_id' => $courseId,
+//                            'favorite' => 0,
+//                            'paid' => 1
+//                        ]);
+//                    }
+//                }
+//                $message = 'course have been pay successfully';
+//                $code = 200;
+//            }else{
+//                $course = [];
+//                $message = 'you have run out of founds';
+//                $code = 403;
+//            }
+//        }else{
+//            $course = [];
+//            $message = 'course not found';
+//            $code = 404;
+//        }
+//        return [
+//            'course' => $course,
+//            'message' => $message,
+//            'code' => $code,
+//        ];
+//    }
+
     //add the course to favorite
-    public function add_to_favorite($course_id):array
+    public function add_to_favorite($course_id)
     {
         $course = Course::query()->where('id' , $course_id)->first();//get course
         if ($course){
@@ -327,8 +403,12 @@ class CourseService
             $user_id_from_pivot = Course_user_pivot::query()->
             where('course_id' , $course_id)
                 ->where('user_id' , Auth::id())->pluck('user_id')->first();
-
-
+//        $user_id = Auth::id();
+//        $course = Course_user_pivot::query()->
+//        join('courses' , 'courses.id' , '=' , 'course_user_pivots.course_id')
+//            ->join('users' , 'course_user_pivots.user_id' , '=' , 'users.id')
+//            ->select('user_id' , 'courses.name' , 'full_name' , 'type' , 'courses.valuation' , 'course_user_pivots.paid')
+//            ->get();
             if ($course_id_from_pivot && $user_id_from_pivot == Auth::id()){//if the course already exist => update
                 Course_user_pivot::query()->where('course_id' , $course_id)
                     ->where('user_id' , Auth::id())->update([

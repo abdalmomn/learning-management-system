@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Course;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Video\AddVideoRequest;
+use App\Http\Requests\Video\UpdateVideoRequest;
 use App\Http\Responses\Response;
 use App\Models\Course;
 use App\Services\VideoService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Owenoj\LaravelGetId3\GetId3;
+use Psy\Util\Json;
+use Throwable;
 
 class VideoController extends Controller
 {
@@ -20,44 +24,130 @@ class VideoController extends Controller
     }
 
 
-    public function create_video(AddVideoRequest $request, $course_id)
+    public function create_video(AddVideoRequest $request, $course_id):JsonResponse
     {
         $video = [];
         try {
-            // Get duration for video (from a package)
-            $track = new GetId3(request()->file('url'));
-            $track = GetId3::fromUploadedFile(request()->file('url'));
-
-            // Get playtime in seconds
-            $playtime_seconds = $track->getPlaytimeSeconds();
-
-            // Convert playtime to H:M:S format
-            $videoDuration = secondsToHms($playtime_seconds);
-
             if (Auth::user()->hasRole('teacher') || Auth::user()->hasRole('admin')) {
                 $videoPath = $request->file('url')->store('videos', 'public');
                 $videoUrl = Storage::url($videoPath);
 
                 $validatedData = $request->validated();
                 $validatedData['url'] = $videoUrl;
-                $validatedData['duration'] = $videoDuration;
+                $validatedData['duration'] = $this->videoService->videoDuration;
 
                 $video = $this->videoService->addVideos($validatedData, $course_id);
-
-                // Update course total duration
-                $course = Course::find($course_id);
-                $courseTotalDurationSeconds = hmsToSeconds($course->hour);
-                $courseTotalDurationSeconds += $playtime_seconds;
-                $course->hour = secondsToHms($courseTotalDurationSeconds);
-                $course->save();
-
                 return Response::Success($video['video'], $video['message']);
             } else {
-                return ['message' => 'unauthorized'];
+                return response()->json(['message' => 'unauthorized']);
             }
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             $message = $th->getMessage();
             return Response::Error([], $message);
+        }
+    }
+
+    public function update_video(UpdateVideoRequest $request ,$course_id, $video_id):JsonResponse
+    {
+        $video = [];
+        try {
+            if (Auth::user()->hasRole('teacher')){
+                $videoPath = $request->file('url')->store('videos', 'public');
+                $videoUrl = Storage::url($videoPath);
+
+                $validatedData = $request->validated();
+                $validatedData['url'] = $videoPath;
+                $validatedData['duration'] = $this->videoService->videoDuration;
+
+                $video = $this->videoService->update_videos($validatedData,$course_id,$video_id);
+                return Response::Success($video['video'],$video['message']);
+            }else{
+                return response()->json(['message' => 'unauthorized']);
+            }
+        }catch(Throwable $th){
+            $message = $th->getMessage();
+            return Response::Error([],$message);
+        }
+    }
+
+    public function delete_video($course_id,$video_id):JsonResponse
+    {
+        $video = [];
+        try {
+            $video = $this->videoService->delete_video($course_id,$video_id);
+            return Response::Success($video['video'] , $video['message']);
+        }catch(Throwable $th){
+            $message = $th->getMessage();
+            return Response::Error([],$message);
+        }
+    }
+
+    public function show_all_videos($course_id):JsonResponse
+    {
+        $video = [];
+        try {
+            $video = $this->videoService->show_all_videos($course_id);
+            return Response::Success($video['video'] , $video['message']);
+        }catch(Throwable $th){
+            $message = $th->getMessage();
+            return Response::Error([],$message);
+        }
+    }
+
+    public function show_video($course_id,$video_id):JsonResponse
+    {
+        $video = [];
+        try {
+            $video = $this->videoService->show_video($course_id , $video_id);
+            return Response::Success($video['video'] , $video['message']);
+        }catch(Throwable $th){
+            $message = $th->getMessage();
+            return Response::Error([],$th);
+        }
+    }
+
+    public function add_like($video_id):JsonResponse
+    {
+        $video = [];
+        try {
+            $video = $this->videoService->add_like($video_id);
+            return Response::Success($video['video'] , $video['message']);
+        }catch(Throwable $th){
+            $message = $th->getMessage();
+            return Response::Error([],$message);
+        }
+    }
+    public function remove_like($video_id):JsonResponse
+    {
+        $video = [];
+        try {
+            $video = $this->videoService->remove_like($video_id);
+            return Response::Success($video['video'] , $video['message']);
+        }catch(Throwable $th){
+            $message = $th->getMessage();
+            return Response::Error([],$message);
+        }
+    }
+    public function add_dislike($video_id):JsonResponse
+    {
+        $video = [];
+        try {
+            $video = $this->videoService->add_dislike($video_id);
+            return Response::Success($video['video'] , $video['message']);
+        }catch(Throwable $th){
+            $message = $th->getMessage();
+            return Response::Error([],$message);
+        }
+    }
+    public function remove_dislike($video_id):JsonResponse
+    {
+        $video = [];
+        try {
+            $video = $this->videoService->remove_dislike($video_id);
+            return Response::Success($video['video'] , $video['message']);
+        }catch(Throwable $th){
+            $message = $th->getMessage();
+            return Response::Error([],$message);
         }
     }
 }

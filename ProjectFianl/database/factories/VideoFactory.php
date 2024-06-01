@@ -23,7 +23,7 @@ class VideoFactory extends Factory
             'description'=>fake()->paragraph(1),
             'duration'=>fake()->randomDigit(),
             'like'=>fake()->randomDigit(),
-            'dis-like'=>fake()->randomDigit(),
+            'dislike'=>fake()->randomDigit(),
             'view'=>fake()->randomDigit(),
             'url'=>fake()->text(),
         ];

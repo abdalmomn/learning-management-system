@@ -54,11 +54,15 @@ Route::middleware('auth:sanctum')->group(function (){
 //Routes for video operation
 Route::middleware('auth:sanctum')->group(function (){
     Route::prefix('video')->controller(VideoController::class)->group(function (){
-        Route::get('show_videos/{course_id}','show_videos')->name('show.video')->middleware('can:show.video');
+        Route::get('show_all_videos/{course_id}','show_all_videos')->name('show.video')->middleware('can:show.video');
+        Route::get('show_video/{course_id}/{video_id}','show_video')->name('show.video')->middleware('can:show.video');
         Route::post('create_video/{course_id}','create_video')->name('create.video')->middleware('can:create.video');
-        Route::post('update_video/{id}','update_video')->name('update.video')->middleware('can:update.video');
-        Route::post('delete_video/{id}','delete_video')->name('delete.video')->middleware('can:delete.video');
-
+        Route::post('update_video/{course_id}/{video_id}','update_video')->name('update.video')->middleware('can:update.video');
+        Route::delete('delete_video/{course_id}/{video_id}','delete_video')->name('delete.video')->middleware('can:delete.video');
+        Route::get('add_like/{video_id}' , 'add_like')->name('video.add_like');
+        Route::get('remove_like/{video_id}' , 'remove_like')->name('video.remove_like');
+        Route::get('add_dislike/{video_id}' , 'add_dislike')->name('video.add_dislike');
+        Route::get('remove_dislike/{video_id}' , 'remove_dislike')->name('video.remove_dislike');
     });
 
 });
