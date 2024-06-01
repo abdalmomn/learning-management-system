@@ -126,8 +126,14 @@ class QuizService
                 } if (Auth::user()->hasRole('teacher')) {
                     $quizzesUsers = Quiz_user_pivot::query()->where('type','teacher')->where('user_id',Auth::id())->get();
                     if (!$quizzesUsers->isEmpty()){
+                        $quizzes = [];
 
-                        $quizzes = $quizzesUsers;
+                        foreach ($quizzesUsers as $quizzesUser) {
+
+                            $quizzes[]  = Quiz::query()->where('id',$quizzesUser->quiz_id)->get();
+
+                        }
+                        $quizzes = $quizzes;
                         $message = 'Getting all your quizzes successfully';
                         $code = 200;
 
@@ -155,6 +161,75 @@ class QuizService
             'quiz' => $quizzes,
             'message' => $message ?? [],
             'code' => $code ?? [],
+        ];
+    }
+
+    //function to get all quizzes in data with questions and answers by admin or teacher ro student
+    public function show_quizzes_with_question_and_answer() : array
+    {
+        $quizzes = Quiz::query()->get();
+        if (!is_null($quizzes)) {
+                if (Auth::user()->hasRole('admin')) {
+
+                    $quizzes = Quiz::query()->with('questions.answers')->get();
+                    $message = 'Getting all quizzes in data successfully';
+                    $code = 200;
+
+                } if (Auth::user()->hasRole('teacher')) {
+                    $quizzesUsers = Quiz_user_pivot::query()->where('type','teacher')->where('user_id',Auth::id())->get();
+                    if (!$quizzesUsers->isEmpty()){
+                        $quizzes = [];
+                        foreach ($quizzesUsers as $quizzesUser) {
+
+                            $quizzes[]  = Quiz::query()->where('id',$quizzesUser->quiz_id)->with('questions.answers')->get();
+
+                        }
+
+
+                        $quizzes = $quizzes;
+                        $message = 'Getting all your quizzes successfully';
+                        $code = 200;
+
+
+                    } else {
+                        $quizzes =[];
+                        $message = 'You do not have any quiz';
+                        $code = 404;
+                    }
+                }else {
+                $quizzesUsers = Quiz_user_pivot::query()->where('type','student')->where('user_id',Auth::id())->get();
+                if (!$quizzesUsers->isEmpty()){
+                    $quizzes = [];
+                    foreach ($quizzesUsers as $quizzesUser) {
+
+                        $quizzes[]  = Quiz::query()->where('id',$quizzesUser->quiz_id)->with('questions.answers')->get();
+
+                    }
+
+
+                    $quizzes = $quizzes;
+                    $message = 'Getting all your quizzes successfully';
+                    $code = 200;
+
+
+                } else {
+                    $quizzes =[];
+                    $message = 'You do not have any quiz';
+                    $code = 404;
+                }
+            }
+
+
+        }else{
+            $quizzes = [];
+            $message = 'Not found any quiz';
+            $code = 404;
+        }
+
+        return [
+            'quiz' => $quizzes,
+            'message' => $message,
+            'code' => $code,
         ];
     }
 

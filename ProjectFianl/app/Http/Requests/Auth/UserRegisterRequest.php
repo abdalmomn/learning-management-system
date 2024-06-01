@@ -30,8 +30,8 @@ class UserRegisterRequest extends FormRequest
             'email' => ['required','unique:users,email','email'],
             'phone' => ['digits:10'],
             'password' => ['required','confirmed','min:8'],
-            'birthday' => ['required','date','date_format:Y-m-d'],
-            'address' => ['required'],
+            'birthday' => [],
+            'address' => [],
             'type' => [],
             'image' => 'image',
         ];

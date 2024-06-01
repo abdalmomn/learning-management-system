@@ -148,53 +148,58 @@ class QuestionService
     }
 
     //function to get question belongs to the specific quiz
-//    public function show_question($quiz_id) : array
-//    {
-//        $question = Question::query()->where('quiz_id',$quiz_id)->get();
-//        if (!is_null($question)) {
-//            if (Auth::user()->hasRole('teacher') || Auth::user()->hasRole('admin')){
-//
-//                if (Auth::user()->hasRole('admin')) {
-//
-//                    $question = Question::query()->where('quiz_id',$quiz_id)->get();
-//                    $message = 'Getting all question in this quiz successfully';
-//                    $code = 200;
-//
-//                } if (Auth::user()->hasRole('teacher')) {
-//                    $question = Question::query()->where('quiz_id',$quiz_id)->get();
-//                    $questionUsers = Quiz_user_pivot::query()->where('type','teacher')->where('quiz+id',$quiz_id)->first();
-//                    if (!$questionUsers->isEmpty()){
-//
-//                        $quizzes = $quizzesUsers;
-//                        $message = 'Getting all your quizzes successfully';
-//                        $code = 200;
-//
-//
-//                    } else {
-//                        $quizzes =[];
-//                        $message = 'You do not have any quiz';
-//                        $code = 404;
-//                    }
-//                }
-//
-//            }else {
-//                $quizzes =[];
-//                $message = 'You do not have any permission to show all quizzes';
-//                $code = 401;
-//
-//            }
-//        }else{
-//            $question = [];
-//            $message = 'Not found any question in this quiz';
-//            $code = 404;
-//        }
-//
-//        return [
-//            'question' => $question,
-//            'message' => $message ?? [],
-//            'code' => $code ?? [],
-//        ];
-//    }
+    public function show_question($quiz_id) : array
+    {
+        $quiz = Quiz::query()->where('id',$quiz_id)->first();
+        if (!is_null($quiz)) {
+            $question = Question::query()->where('quiz_id', $quiz_id)->get();
+            if ($question->isEmpty()) {
+                if (Auth::user()->hasRole('teacher') || Auth::user()->hasRole('admin')) {
+
+                    if (Auth::user()->hasRole('admin')) {
+
+                        $message = 'Getting all question in this quiz successfully';
+                        $code = 200;
+
+                    }
+                    if (Auth::user()->hasRole('teacher')) {
+                        $questionUsers = Quiz_user_pivot::query()->where('type', 'teacher')->where('user_id', Auth::id())->where('quiz_id', $quiz_id)->first();
+                        if ($questionUsers) {
+
+                            $message = 'Getting all your quizzes successfully';
+                            $code = 200;
+
+
+                        } else {
+                            $question = [];
+                            $message = 'You do not have any quiz';
+                            $code = 404;
+                        }
+                    }
+
+                } else {
+                    $question = [];
+                    $message = 'You do not have any permission to show question for this quiz';
+                    $code = 401;
+
+                }
+            } else {
+                $question = [];
+                $message = 'Not found any question in this quiz';
+                $code = 404;
+            }
+        }else{
+            $question = [];
+            $message = 'This quiz not found';
+            $code = 404;
+        }
+
+        return [
+            'question' => $question,
+            'message' => $message ?? [],
+            'code' => $code ?? [],
+        ];
+    }
 
 
   }
