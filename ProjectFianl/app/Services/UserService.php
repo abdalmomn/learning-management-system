@@ -64,7 +64,7 @@ class UserService
 
             $welcome= 'welcome in our app';
             $data = $request['full_name'];
-        //    Event::dispatch(new WelcomeEvent($welcome,$data));
+            Event::dispatch(new WelcomeEvent($welcome,$data));
 
         }
         return [
@@ -134,7 +134,7 @@ class UserService
         $add = \App\Models\Notification::query()->where('id', $id) ->first();
 
         if ($add->apply == 0) {
-            $admin =User::query()->find(Auth::id());
+            $admin = User::query()->where('id',Auth::id());
             if ($admin->hasRole('admin')) {
                 $add->update([
                     'apply' => 1
@@ -170,7 +170,7 @@ class UserService
     //add teacher by admin in real life
     public function admin_adding_new_teacher($request) : array
     {
-        $admin =User::query()->find(Auth::id());
+        $admin =User::query()->where('id',Auth::id());
         if (($admin)->hasRole('admin')){
 
             $user = $this->Make_teacher($request);

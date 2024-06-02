@@ -185,20 +185,6 @@ class UserOperationService
         ];
     }
 
-    //show profile for user (student and teacher)
-    public function show_profile() : array
-    {
-            $user=User::query()->where('id',Auth::id())->first();
-            $message = 'Your profile';
-            $code=200;
-
-        return [
-            'user' => $user,
-            'message' => $message,
-            'code' => $code,
-        ];
-    }
-
 
 
 }

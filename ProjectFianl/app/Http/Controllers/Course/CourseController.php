@@ -35,6 +35,26 @@ class CourseController extends Controller
 
         }
     }
+
+    public function show_course($course_id) : jsonResponse
+    {
+        $data = [];
+        try {
+
+            $data = $this->courseService->show_course($course_id);
+            return response()->json([
+                'data' => $data['video'],
+                'count of video' => $data['count'],
+                'message' => $data['message'],
+                'code' => $data['code'],
+            ]);
+
+        }catch (Throwable $th){
+            $message=$th->getMessage();
+            return Response::Error($data,$message);
+
+        }
+    }
     public function show_courses($subject_id) : jsonResponse
     {
         $data = [];

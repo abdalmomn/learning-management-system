@@ -61,20 +61,5 @@ class QuizController extends Controller
         }
     }
 
-    //api to get all quizzes in data with questions and answers by admin or teacher ro student
-    public function show_quizzes_with_question_and_answer() : jsonResponse
-    {
-        $data = [];
-        try {
-            $data = $this->quizService->show_quizzes_with_question_and_answer();
-            return Response::Success($data['quiz'],$data['message'],$data['code']);
-
-        }catch (\Throwable $th){
-            $message=$th->getMessage();
-            return Response::Error($data,$message);
-
-        }
-    }
-
 
 }

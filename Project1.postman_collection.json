@@ -27,57 +27,63 @@
 									"formdata": [
 										{
 											"key": "full_name",
-											"value": "basher ladaas",
+											"value": "abdalmomndoah",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "1@example.com",
+											"value": "abdalmomn2@example.com",
 											"type": "text"
 										},
 										{
 											"key": "phone",
-											"value": "0994875920",
+											"value": "0981239751",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "57484899",
+											"value": "12345678",
 											"type": "text"
 										},
 										{
 											"key": "password_confirmation",
-											"value": "57484899",
+											"value": "12345678",
 											"type": "text"
 										},
 										{
 											"key": "birthday",
-											"value": "2001-02-22",
+											"value": "2002-04-23",
 											"type": "text"
 										},
 										{
 											"key": "address",
-											"value": "doma",
+											"value": "dara'a",
 											"type": "text"
 										},
 										{
 											"key": "type",
-											"value": "student",
+											"value": "teacher",
 											"type": "text"
 										},
 										{
 											"key": "image",
 											"type": "file",
-											"src": "/F:/family/هاتف/gh/63364.jpg"
+											"src": "/C:/Users/abdalmomn/Pictures/code.png"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/register",
+									"raw": "http://127.0.0.1:8000/api/register",
+									"protocol": "http",
 									"host": [
-										"{{url}}"
+										"127",
+										"0",
+										"0",
+										"1"
 									],
+									"port": "8000",
 									"path": [
+										"api",
 										"register"
 									]
 								}
@@ -1758,22 +1764,28 @@
 										},
 										{
 											"key": "password",
-											"value": "555555554",
+											"value": "55555555",
 											"type": "text"
 										},
 										{
 											"key": "password_confirmation",
-											"value": "555555554",
+											"value": "55555555",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/login",
+									"raw": "http://127.0.0.1:8000/api/login",
+									"protocol": "http",
 									"host": [
-										"{{url}}"
+										"127",
+										"0",
+										"0",
+										"1"
 									],
+									"port": "8000",
 									"path": [
+										"api",
 										"login"
 									]
 								}
@@ -10204,7 +10216,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "8|BzryxCuABpF6Ik1q07W9gFXbKkajAwE4QB54p8Uz1409463f",
+									"value": "3|AwcgYQUSC0hsMcOVZDReU9DUolFTDykVjRvqhetO36e30044",
 									"type": "string"
 								}
 							]
@@ -10222,32 +10234,32 @@
 							"formdata": [
 								{
 									"key": "subject_id",
-									"value": "1",
+									"value": "2",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "course 111",
+									"value": "course 2",
 									"type": "text"
 								},
 								{
 									"key": "content",
-									"value": "content for course 111",
+									"value": "content for course 2",
 									"type": "text"
 								},
 								{
 									"key": "poster",
 									"type": "file",
-									"src": "/C:/Users/abdalmomn/Pictures/code.png"
+									"src": "/C:/Users/abdalmomn/Pictures/-5836678839948918197_121.jpg"
 								},
 								{
 									"key": "requirements",
-									"value": "requirements 111",
+									"value": "requirements 2",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "1000",
+									"value": "2000",
 									"type": "text"
 								}
 							]
@@ -11946,7 +11958,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "8|BzryxCuABpF6Ik1q07W9gFXbKkajAwE4QB54p8Uz1409463f",
+									"value": "2|h4nczrvZ4JQnQyMAVms9dh19kXQrAYqvV4RZ82Ah98d58176",
 									"type": "string"
 								}
 							]
@@ -11964,7 +11976,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/course/paid_course/21",
+							"raw": "http://127.0.0.1:8000/api/course/paid_course/17",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -11977,7 +11989,7 @@
 								"api",
 								"course",
 								"paid_course",
-								"21"
+								"17"
 							]
 						}
 					},
@@ -12227,7 +12239,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "9|zYTLrD7mJdjdXmQkvAgmWinO38WVDVLH1QrHJAKm00464f32",
+									"value": "2|h4nczrvZ4JQnQyMAVms9dh19kXQrAYqvV4RZ82Ah98d58176",
 									"type": "string"
 								}
 							]
@@ -12241,7 +12253,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/course/add_to_favorite/23",
+							"raw": "http://127.0.0.1:8000/api/course/add_to_favorite/16",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -12254,7 +12266,7 @@
 								"api",
 								"course",
 								"add_to_favorite",
-								"23"
+								"16"
 							]
 						}
 					},
@@ -14752,6 +14764,539 @@
 							"body": "{\n    \"status\": 1,\n    \"data\": \"\",\n    \"message\": \"course not found\"\n}"
 						}
 					]
+				},
+				{
+					"name": "show_course",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "not authenticated (the user did not register or there is no token)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/course/show_course/16",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"course",
+										"show_course",
+										"16"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Jun 2024 18:10:04 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Jun 2024 18:10:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/course/show_course/16",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"course",
+										"show_course",
+										"16"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Jun 2024 18:14:41 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Jun 2024 18:14:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 21,\n            \"course_id\": 16,\n            \"title\": \"video 102\",\n            \"description\": null,\n            \"duration\": \"00:03:36\",\n            \"like\": 1,\n            \"dislike\": 0,\n            \"view\": 1,\n            \"url\": \"/storage/videos/kiSp4XSDSLwtqBzujWKz2zsL8709mGBKb1A14faf.mp3\",\n            \"created_at\": \"2024-06-01T09:58:00.000000Z\",\n            \"updated_at\": \"2024-06-01T10:05:09.000000Z\"\n        },\n        {\n            \"id\": 22,\n            \"course_id\": 16,\n            \"title\": \"video 102\",\n            \"description\": null,\n            \"duration\": \"00:03:36\",\n            \"like\": 0,\n            \"dislike\": 0,\n            \"view\": 0,\n            \"url\": \"/storage/videos/M5VMBPuSOI9ItOo4yJriXsRWt8qe1Y0Os3uVMBuu.mp3\",\n            \"created_at\": \"2024-06-02T18:03:17.000000Z\",\n            \"updated_at\": \"2024-06-02T18:03:17.000000Z\"\n        },\n        {\n            \"id\": 23,\n            \"course_id\": 16,\n            \"title\": \"video 102\",\n            \"description\": null,\n            \"duration\": \"00:03:36\",\n            \"like\": 0,\n            \"dislike\": 0,\n            \"view\": 0,\n            \"url\": \"/storage/videos/bZwJRHG8dQoqFYymsXdWcWRMjNOhIeXrGFu0PoNY.mp3\",\n            \"created_at\": \"2024-06-02T18:03:21.000000Z\",\n            \"updated_at\": \"2024-06-02T18:03:21.000000Z\"\n        }\n    ],\n    \"count of video\": 3,\n    \"message\": \"getting all videos for this course\",\n    \"code\": 200\n}"
+						},
+						{
+							"name": "course_not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/course/show_course/1600",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"course",
+										"show_course",
+										"1600"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Jun 2024 18:16:49 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Jun 2024 18:16:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [],\n    \"count of video\": 0,\n    \"message\": \"course not found\",\n    \"code\": 404\n}"
+						},
+						{
+							"name": "course is empty",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/course/show_course/17",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"course",
+										"show_course",
+										"17"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Jun 2024 18:17:31 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Jun 2024 18:17:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [],\n    \"count of video\": 0,\n    \"message\": \"there are no videos at the moment\",\n    \"code\": 404\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "videos",
+			"item": [
+				{
+					"name": "add_video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3|AwcgYQUSC0hsMcOVZDReU9DUolFTDykVjRvqhetO36e30044",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "video 23",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description 23",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"type": "file",
+									"src": "/C:/Users/abdalmomn/Documents/Gym_Class_Heroes_Stereo_Hearts_ft_Adam_Levine_OFFICIAL_T3E9Wjbq44E.mp3"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/video/create_video/17",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"video",
+								"create_video",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3|AwcgYQUSC0hsMcOVZDReU9DUolFTDykVjRvqhetO36e30044",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "video 222",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description 222",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"type": "file",
+									"src": "/C:/Users/abdalmomn/Documents/_David_Guetta_Hey_Mama_Dabin_Cha_cover__yW0tDixjvgs_298.mp4"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/video/update_video/16/21",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"video",
+								"update_video",
+								"16",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3|AwcgYQUSC0hsMcOVZDReU9DUolFTDykVjRvqhetO36e30044",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/video/delete_video/16/22",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"video",
+								"delete_video",
+								"16",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all videos",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "show video",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "add_like",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "remove like",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "add dislike",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "remove dislike",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		}

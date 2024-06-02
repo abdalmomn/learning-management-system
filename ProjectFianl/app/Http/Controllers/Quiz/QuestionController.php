@@ -65,20 +65,20 @@ class QuestionController extends Controller
         }
     }
 
-    //api to get question for special quiz
-    public function show_question($quiz_id) : jsonResponse
-    {
-        $data = [];
-        try {
-            $data = $this->questionService->show_question($quiz_id);
-            return Response::Success($data['question'],$data['message'],$data['code']);
-
-        }catch (\Throwable $th){
-            $message=$th->getMessage();
-            return Response::Error($data,$message);
-
-        }
-    }
+//    //api to get question for special quiz
+//    public function show_question() : jsonResponse
+//    {
+//        $data = [];
+//        try {
+//            $data = $this->quizService->show_quizzes();
+//            return Response::Success($data['quiz'],$data['message'],$data['code']);
+//
+//        }catch (\Throwable $th){
+//            $message=$th->getMessage();
+//            return Response::Error($data,$message);
+//
+//        }
+//    }
 
 
 

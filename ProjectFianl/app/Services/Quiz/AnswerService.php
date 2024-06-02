@@ -3,7 +3,6 @@
 namespace App\Services\Quiz;
 
 use App\Models\Answer;
-use App\Models\Course_user_pivot;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\Quiz_user_pivot;
@@ -161,63 +160,6 @@ class AnswerService
         ];
     }
 
-    //function to get answers belongs to the specific question
-    public function show_answer($question_id) : array
-    {
-        $question = Question::query()->where('id',$question_id)->first();
-        if (!is_null($question)) {
-            $answer = Answer::query()->where('question_id', $question_id)->get();
-            if (!$answer->isEmpty()) {
-                if (Auth::user()->hasRole('teacher') || Auth::user()->hasRole('admin')) {
-
-                    if (Auth::user()->hasRole('admin')) {
-
-                        $message = 'Getting all answers in this question successfully';
-                        $code = 200;
-
-                    }
-                    if (Auth::user()->hasRole('teacher')) {
-                        $quiz_id = $question->quiz_id;
-                        $quiz = Quiz::query()->where('id',$quiz_id)->first();
-                        $course_id = $quiz->course_id;
-                        $found = Course_user_pivot::query()
-                            ->where('paid',0)
-                            ->where('course_id',$course_id)
-                            ->where('user_id',Auth::id())
-                            ->first();
-                        if ($found) {
-                            $message = 'Getting all answers in this question successfully';
-                            $code = 200;
-                        } else {
-                            $answer = [];
-                            $message = 'This question belongs to another teacher';
-                            $code = 404;
-                        }
-                    }
-
-                } else {
-                    $answer = [];
-                    $message = 'You do not have any permission to show answers for this question';
-                    $code = 401;
-
-                }
-            } else {
-                $answer = [];
-                $message = 'Not found any answer in this question';
-                $code = 404;
-            }
-        }else{
-            $answer = [];
-            $message = 'This question not found';
-            $code = 404;
-        }
-
-        return [
-            'answer' => $answer,
-            'message' => $message ?? [],
-            'code' => $code ?? [],
-        ];
-    }
-
+    
 
 }

@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Course_user_pivot;
 use App\Models\User;
 use App\Models\User_video_pivot;
+use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use function PHPUnit\Framework\isEmpty;
@@ -44,12 +45,46 @@ class CourseService
         ];
     }
 
+    public function show_course($course_id)
+    {
+        $course = Course::query()
+            ->where('id',$course_id)
+            ->first();
+        $video = Video::query()
+            ->where('course_id' , $course_id)->get();
+        $video_count = Video::query()
+            ->where('course_id' , $course_id)
+            ->count();
+        if ($course){
+        if (!$video->isEmpty()){
+                $message = 'getting all videos for this course';
+                $code = 200;
+            }else{
+                $video = [];
+                $message = 'there are no videos at the moment';
+                $code = 404;
+            }
+        }else{
+            $message = 'course not found';
+            $code = 404;
+        }
+        return [
+            'video' => $video,
+            'count' => $video_count,
+            'message' => $message,
+            'code' => $code,
+
+        ];
+    }
+
     //show all courses for special subject
     public function show_courses($subject_id) :array
     {
         $courses = Course::query()
             ->where('subject_id',$subject_id)
             ->get();
+
+
         if ($courses->isEmpty()){
             $message = 'There are no courses for this subject at the moment';
             $code=404;
