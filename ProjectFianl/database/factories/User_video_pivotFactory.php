@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,6 +22,8 @@ class User_video_pivotFactory extends Factory
         return [
             'user_id'=>User::get()->random()->id,
             'video_id'=>Video::get()->random()->id,
+            'watched' => fake()->boolean,
+            'course_id'=>Course::get()->random()->id,
         ];
     }
 }

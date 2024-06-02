@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function videos() : belongsToMany
     {
-        return $this->belongsToMany(Video::class);
+        return $this->belongsToMany(Video::class)->withPivot('watched');
     }
 
     ////في واحد ما حطيتو

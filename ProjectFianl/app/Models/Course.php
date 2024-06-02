@@ -43,5 +43,10 @@ class Course extends Model
         return $this->belongsTo(Quiz::class,'course_id');
     }
 
+    public function watched() : hasMany
+    {
+        return $this->hasMany(User_video_pivot::class,'course_id');
+    }
+
 
 }

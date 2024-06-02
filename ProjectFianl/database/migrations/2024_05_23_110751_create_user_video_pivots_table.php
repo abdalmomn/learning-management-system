@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('user_video_pivots', function (Blueprint $table) {
             $table->id();
+            $table->boolean('watched')->default(0);
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->foreignId('video_id')
                 ->constrained('videos')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->foreignId('course_id')
+                ->constrained('courses')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->timestamps();

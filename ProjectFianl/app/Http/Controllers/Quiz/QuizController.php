@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Quiz;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Quiz\SubmitAnswersRequest;
 use App\Http\Responses\Response;
+use App\Models\Question;
+use App\Models\User_video_pivot;
 use App\Services\Quiz\QuizService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
@@ -61,5 +64,66 @@ class QuizController extends Controller
         }
     }
 
+<<<<<<< HEAD
+=======
+    //api to get all quizzes in data with questions and answers by admin or teacher ro student
+    public function show_quizzes_with_question_and_answer() : jsonResponse
+    {
+        $data = [];
+        try {
+            $data = $this->quizService->show_quizzes_with_question_and_answer();
+            return Response::Success($data['quiz'],$data['message'],$data['code']);
+
+        }catch (\Throwable $th){
+            $message=$th->getMessage();
+            return Response::Error($data,$message);
+
+        }
+    }
+
+    //api to go to the quiz in the end of course
+    public function go_to_quiz($course_id) : jsonResponse
+    {
+        $data = [];
+        try {
+            $data = $this->quizService->go_to_quiz($course_id);
+            return Response::Success($data['quiz'],$data['message'],$data['code']);
+
+        }catch (\Throwable $th){
+            $message=$th->getMessage();
+            return Response::Error($data,$message);
+
+        }
+    }
+
+    //api to submit choices and getting mark
+    public function submit_quiz(SubmitAnswersRequest $request,$quiz_id) : jsonResponse
+    {
+        $data = [];
+        try {
+            $data = $this->quizService->submit_quiz($request->validated(),$quiz_id);
+            return Response::Success($data['quiz'],$data['message'],$data['code']);
+
+        }catch (\Throwable $th){
+            $message=$th->getMessage();
+            return Response::Error($data,$message);
+
+        }
+    }
+
+    public function sh(){
+
+        $questions = Question::query()->where('quiz_id',9)->with('answers')->get();
+        $answersTrue =[];
+        for ($j = 0 ; $j >9 ; $j++){
+        for ($i=0;$i>4;$i++){
+          if($questions[$j]->answers[$i]->role == 1){
+              $answersTrue = $questions[$j]->answers[$i]->id;
+             }
+        }}
+        return $answersTrue;
+    }
+
+>>>>>>> origin/main
 
 }
