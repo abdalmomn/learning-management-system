@@ -13,31 +13,85 @@ use function PHPUnit\Framework\isEmpty;
 class CourseService
 {
     //show all courses that belongs to the teacher
-    public function teacher_courses() :array
+    public function teacher_courses($teacher_id) :array
     {
-        if (Auth::user()->hasRole('teacher')){
             $courses = [];
-            $courses_ids = Course_user_pivot::query()->where('user_id', Auth::id())->select('course_id')->get();
+            $teacher_name = [];
 
-            foreach ($courses_ids as $courses_id) {
-                $course = Course::query()->where('id', $courses_id->course_id)->first();
+        $course_ids = Course_user_pivot::query()
+            ->join('users' , 'users.id' , '=' , 'course_user_pivots.user_id')
+            ->where('user_id' , $teacher_id)
+            ->select('users.full_name as username' , 'course_user_pivots.course_id as course_id')
+            ->get();
+            foreach ($course_ids as $course_id) {
+                $course = Course::query()->where('id', $course_id->course_id)->first();
                 if ($course) {
+                    $teacher_name = $course_id->username;
                     $courses[] = $course;
                 }
             }
-            if (!$courses){
-                $message = 'There are no courses for this subject at the moment';
-                $code=404;
+            if ($courses){
+                    $message = 'Getting all courses for this teacher';
+                    $code=200;
             }else{
-                $message = 'Getting all courses for this teacher';
-                $code=200;
-            }}else{
-            $courses = [];
-            $message = 'you dont have permission for getting courses';
-            $code=403;
-        }
+                $message = 'There are no courses for this teacher at the moment or teacher not found';
+                $code=404;
+            }
+        if ($teacher_name)
+        $courses['teacher_name'] = $teacher_name;
+        else
+        $courses['teacher_name'] = 'none';
         return [
             'courses' => $courses,
+            'message' => $message,
+            'code' => $code,
+        ];
+    }
+
+
+    //show a single course for a teacher
+    public function show_course($course_id)
+    {
+        $pivot = Course_user_pivot::query()
+            ->join('users' , 'users.id' , '=' , 'course_user_pivots.user_id')
+            ->join('courses' , 'courses.id' , '=' , 'course_user_pivots.course_id')
+            ->where('course_id' , $course_id)
+            ->select('users.full_name as username' , 'courses.id as course_id')
+            ->first();
+
+        $teacher_name = $pivot->username;
+        $course = Course::query()
+            ->where('id',$course_id)
+            ->first();
+
+        $video = Video::query()
+            ->where('course_id' , $course_id)->get();
+        $video_count = Video::query()
+            ->where('course_id' , $course_id)
+            ->count();
+        if ($course){
+        if (!$video->isEmpty()){
+                $message = 'getting all videos for this course';
+                $code = 200;
+            }else{
+                $video = [];
+                $message = 'there are no videos at the moment';
+                $code = 404;
+            }
+        }else{
+            $message = 'course not found';
+            $code = 404;
+        }
+        if ($teacher_name)
+        $video['teacher_name'] = $teacher_name;
+        else
+        $video['teacher_name'] = 'none';
+        if ($video_count)
+        $video['videos_count'] = $video_count;
+        else
+        $video['videos_count'] = 'none';
+        return [
+            'video' => $video,
             'message' => $message,
             'code' => $code,
 
@@ -504,38 +558,49 @@ class CourseService
 
             $paid = Course_user_pivot::query()
                 ->where('course_id', $course_id)
+                ->where('user_id' , Auth::id())
                 ->pluck('paid')
                 ->first();
 
-            if ($course && Auth::id() == $user_id_from_pivot && $paid == 1) {
-                Course_user_pivot::query()->where('course_id', $course_id)
-                    ->where('user_id', Auth::id())
-                    ->update(['rate' => $request['rate']]);
+            $video_count = Video::query()
+                ->where('course_id' , $course_id)
+                ->count();
+            $watched_video = User_video_pivot::query()
+                ->where('course_id' , $course_id)
+                ->where('user_id' , Auth::id())
+                ->where('watched' ,'=' , 1)
+                ->count();
 
-                // Get the count and sum of rates that are greater than 0
-                $rates = Course_user_pivot::query()
-                    ->where('course_id', $course_id)
-                    ->where('rate', '>', 0)
-                    ->pluck('rate');
+            if (Auth::id() == $user_id_from_pivot && $paid == 1 && $watched_video >= (75*$video_count)/100) {
+                    Course_user_pivot::query()->where('course_id', $course_id)
+                        ->where('user_id', Auth::id())
+                        ->update(['rate' => $request['rate']]);
 
-                $rate_count = $rates->count();
-                $rate_sum = $rates->sum();
-                if ($rate_count > 0) {
-                    $course->valuation = $rate_sum / $rate_count;
-                    $course->save();
+                    // Get the count and sum of rates that are greater than 0
+                    $rates = Course_user_pivot::query()
+                        ->where('course_id', $course_id)
+                        ->where('rate', '>', 0)
+                        ->pluck('rate');
+
+                    $rate_count = $rates->count();
+                    $rate_sum = $rates->sum();
+                    if ($rate_count > 0) {
+                        $course->valuation = $rate_sum / $rate_count;
+                        $course->save();
+                    }
+                    $message = 'rated success';
+                    $code = 200;
+                }else{
+                    $course = [];
+                    $message = 'you must watch 75% of the videos first';
+                    $code = 403;
                 }
-                $message = 'rated success';
-                $code = 200;
-            } else {
+            }else {
                 $course = [];
-                $message = 'purchase for the course first';
+                $message = 'course not found';
                 $code = 403;
             }
-        }else{
-            $course = '';
-            $message = 'course not found';
-            $code = 404;
-        }
+
         return [
             'course' => $course,
             'message' => $message,

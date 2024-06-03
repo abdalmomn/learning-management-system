@@ -21,13 +21,28 @@ class CourseController extends Controller
     }
 
     //api to show all course for special subject to all roles
-    public function teacher_show_courses() : jsonResponse
+    public function teacher_show_courses($teacher_id) : jsonResponse
     {
         $data = [];
         try {
 
-            $data = $this->courseService->teacher_courses();
+            $data = $this->courseService->teacher_courses($teacher_id);
             return Response::Success($data['courses'],$data['message'],$data['code']);
+
+        }catch (Throwable $th){
+            $message=$th->getMessage();
+            return Response::Error($data,$message);
+
+        }
+    }
+
+    public function show_course($course_id) : jsonResponse
+    {
+        $data = [];
+        try {
+
+            $data = $this->courseService->show_course($course_id);
+            return Response::Success($data['video'] , $data['message'] , $data['code']);
 
         }catch (Throwable $th){
             $message=$th->getMessage();

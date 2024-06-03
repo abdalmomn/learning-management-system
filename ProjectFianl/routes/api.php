@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function (){
     Route::prefix('course')->controller(CourseController::class)->group(function (){
         Route::get('show_courses/{subject_id}','show_courses')->name('course.show')->middleware('can:show.course');
-        Route::get('teacher_courses' , 'teacher_show_courses')->name('teacher.course');
+        Route::get('teacher_courses/{teacher_id}' , 'teacher_show_courses')->name('teacher.course');
         Route::get('myspace_courses' , 'myspace_course')->name('myspace.course');
         Route::post('create_course','create_course')->name('create.course')->middleware('can:create.course');
         Route::post('update_course/{id}','update_course')->name('update.course')->middleware('can:update.course');

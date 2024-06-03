@@ -34,6 +34,7 @@ class UserRegisterRequest extends FormRequest
             'address' => [],
             'type' => [],
             'image' => 'image',
+
         ];
     }
 

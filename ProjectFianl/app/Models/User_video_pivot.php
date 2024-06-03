@@ -10,9 +10,10 @@ class User_video_pivot extends Model
 {
     use HasFactory;
     protected $fillable = [
-      'user_id',
-      'video_id',
-       'watched',
+        'user_id',
+        'video_id',
+        'course_id',
+        'watched',
     ];
     public function user() : belongsTo
     {

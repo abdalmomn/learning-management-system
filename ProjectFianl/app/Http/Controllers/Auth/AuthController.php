@@ -31,10 +31,7 @@ class AuthController extends Controller
     {
         $data = [];
         try {
-            $imagePath = $request->file('image')->store('images' , 'public');
-            $imageUrl = Storage::url($imagePath);
             $validatedData = $request->validated();
-            $validatedData['image'] = $imageUrl;
             $data = $this->userService->register($validatedData);
             return Response::Success($data['user'],$data['message']);
 
