@@ -64,8 +64,6 @@ class QuizController extends Controller
         }
     }
 
-<<<<<<< HEAD
-=======
     //api to get all quizzes in data with questions and answers by admin or teacher ro student
     public function show_quizzes_with_question_and_answer() : jsonResponse
     {
@@ -124,6 +122,5 @@ class QuizController extends Controller
         return $answersTrue;
     }
 
->>>>>>> origin/main
 
 }
