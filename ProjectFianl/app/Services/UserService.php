@@ -42,10 +42,10 @@ class UserService
                 'email' => $request['email'],
                 'phone' => $request['phone'],
                 'password' => bcrypt($request['password']),
-                'birthday' => $request['birthday'],
-                'address' => $request['address'],
+               // 'birthday' => $request['birthday'],
+                //'address' => $request['address'],
                 'type' => 'student',
-                'image'=> $request['image'],
+                //'image'=> $request['image'],
             ]);
             $studentRole = Role::query()
                 ->where('name', 'student')

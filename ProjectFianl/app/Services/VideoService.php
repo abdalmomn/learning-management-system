@@ -38,6 +38,8 @@ class VideoService
             $user_video = User_video_pivot::create([
                 'user_id' => Auth::id(),
                 'video_id' => $video->id,
+                'course_id' => $course_id,
+                'watched' => 0,
             ]);
             // Update course total duration
             $course = Course::find($course_id);
@@ -46,11 +48,17 @@ class VideoService
             $course->hour = secondsToHms($courseTotalDurationSeconds);
             $course->save();
         }else{
+            $video = [];
+            $user_video = [];
             $message = 'unauthorized';
             $code = 403;
         }
         $message = 'video added successfully';
-        return ['video' => $video, 'user_video' => $user_video, 'message' => $message];
+        return [
+            'video' => $video,
+            'user_video' => $user_video,
+            'message' => $message
+        ];
     }
 
 
@@ -212,6 +220,20 @@ class VideoService
                 $video->view += 1;
                 $video->save();
 
+                //add to watched videos
+                $pivot = User_video_pivot::query()
+                    ->where('video_id' , $video_id)
+                    ->where('course_id' , $course_id)
+                    ->where('user_id' , Auth::id())
+                    ->first();
+                if (is_null($pivot)) {
+                    User_video_pivot::query()->create([
+                        'user_id' => Auth::id(),
+                        'video_id' => $video_id,
+                        'course_id' => $course_id,
+                        'watched' => 1,
+                    ]);
+                }
                 $message = 'video information';
             }else{
                 $video = [];

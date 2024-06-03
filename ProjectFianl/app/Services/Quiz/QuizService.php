@@ -159,8 +159,6 @@ class QuizService
         ];
     }
 
-<<<<<<< HEAD
-=======
     //function to get all quizzes in data with questions and answers by admin or teacher ro student
     public function show_quizzes_with_question_and_answer() : array
     {
@@ -376,7 +374,6 @@ class QuizService
             ];
     }
 
->>>>>>> origin/main
 
 
 
