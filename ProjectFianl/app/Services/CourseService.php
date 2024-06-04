@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Course_user_pivot;
 use App\Models\User;
 use App\Models\User_video_pivot;
+use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use function PHPUnit\Framework\isEmpty;
@@ -49,6 +50,7 @@ class CourseService
     }
 
     //show a single course for a teacher
+ //show a single course for a teacher
     public function show_course($course_id)
     {
         $pivot = Course_user_pivot::query()
@@ -58,7 +60,6 @@ class CourseService
             ->select('users.full_name as username' , 'courses.id as course_id')
             ->first();
 
-        $teacher_name = $pivot->username;
         $course = Course::query()
             ->where('id',$course_id)
             ->first();
@@ -68,8 +69,9 @@ class CourseService
         $video_count = Video::query()
             ->where('course_id' , $course_id)
             ->count();
-        if ($course){
-        if (!$video->isEmpty()){
+        if ($course && $pivot){
+            $teacher_name = $pivot->username;
+            if (!$video->isEmpty()){
                 $message = 'getting all videos for this course';
                 $code = 200;
             }else{
@@ -78,17 +80,15 @@ class CourseService
                 $code = 404;
             }
         }else{
+            $teacher_name = 'none';
             $message = 'course not found';
             $code = 404;
         }
-        if ($teacher_name)
         $video['teacher_name'] = $teacher_name;
-        else
-        $video['teacher_name'] = 'none';
         if ($video_count)
-        $video['videos_count'] = $video_count;
+            $video['videos_count'] = $video_count;
         else
-        $video['videos_count'] = 'none';
+            $video['videos_count'] = 'none';
         return [
             'video' => $video,
             'message' => $message,
@@ -96,7 +96,6 @@ class CourseService
 
         ];
     }
-
     //show all courses for special subject
     public function show_courses($subject_id) :array
     {
