@@ -48,7 +48,6 @@ class CourseService
         ];
     }
 
-
     //show a single course for a teacher
     public function show_course($course_id)
     {

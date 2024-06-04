@@ -351,7 +351,8 @@ class QuizService
                     'type' => 'student',
                     'mark' => $mark
                 ]);
-             //   if ($mark)
+                //
+             //   ازا جاب علامة تامة بينبعت ايميل شهادة امتياز مع معالجة حالتين تلاتة وازا جاب اقل من 40% بيرسب
 
                 $answer = $mark;
                 $message = 'Your mark';

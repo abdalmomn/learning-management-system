@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\UserOperationController;
 use App\Http\Controllers\Course\CourseController;
 use App\Http\Controllers\Course\SubjectController;
 use App\Http\Controllers\Course\VideoController;
+use App\Http\Controllers\Operation\SearchController;
 use App\Http\Controllers\Quiz\AnswerController;
 use App\Http\Controllers\Quiz\QuestionController;
 use App\Http\Controllers\Quiz\QuizController;
@@ -34,7 +35,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Routes for course operation
 Route::middleware('auth:sanctum')->group(function (){
     Route::prefix('course')->controller(CourseController::class)->group(function (){
-        Route::get('show_courses/{subject_id}','show_courses')->name('course.show')->middleware('can:show.course');
+        Route::get('show_course/{course_id}','show_course')->name('course.show')->middleware('can:show.course');
+        Route::get('show_courses/{subject_id}','show_courses')->name('courses.show')->middleware('can:show.course');
         Route::get('teacher_courses/{teacher_id}' , 'teacher_show_courses')->name('teacher.course');
         Route::get('myspace_courses' , 'myspace_course')->name('myspace.course');
         Route::post('create_course','create_course')->name('create.course')->middleware('can:create.course');
@@ -133,4 +135,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('show_answer/{question_id}', 'show_answer')->name('show.answer')->middleware('can:show.quiz');
 
     });
+
+    //Routes for operations
+    Route::controller(SearchController::class)->group(function (){
+        Route::post('search_course/{subject_id}','search_course')->name('search.course');
+        Route::post('search_video/{course_id}','search_video')->name('search.course');
+
+
+    });
+
 });
