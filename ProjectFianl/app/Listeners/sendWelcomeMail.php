@@ -23,6 +23,6 @@ class sendWelcomeMail implements shouldQueue
      */
     public function handle(WelcomeEvent $event): void
     {
-        Mail::to('basher11aldaas@gmail.com')->send(new WelcomeMail($event->welcome,$event->data));
+        Mail::to($event->data['email'])->send(new WelcomeMail($event->welcome,$event->data['name']));
     }
 }

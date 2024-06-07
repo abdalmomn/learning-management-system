@@ -20,21 +20,15 @@ class UserService
     {
          if($request['type'] == 'teacher') {
             //send email for the admin to apply this teacher
-            $welcome['data']= $request;
-            $welcome['message'] = 'Do you want to add this teacher';
-           // CheckTeacherMailJob::dispatch($welcome);
-
-            $data= $request;
-             $welcome = 'Do you want to add this teacher';
-          //  CheckTeacherMailJob::dispatch($data);
-            $admin = User::query()->find(1);
-          //   Notification::send($admin , new CheckTeacherMail($data));
-
+            $data = $request;
+            CheckTeacherMailJob::dispatch($data);
 
             //sending welcome email
             $welcome= 'Your Request for processing has been registered,please wait for response the admin';
-            $data = $request['full_name'];
-           // Event::dispatch(new WelcomeEvent($welcome,$data));
+            $data = [];
+            $data['name'] = $request['full_name'];
+            $data['email'] = $request['email'];
+             Event::dispatch(new WelcomeEvent($welcome,$data));
 
         }else{
             $user=User::query()->create([
@@ -63,8 +57,10 @@ class UserService
             //sending welcome email
 
             $welcome= 'welcome in our app';
-            $data = $request['full_name'];
-        //    Event::dispatch(new WelcomeEvent($welcome,$data));
+             $data = [];
+             $data['name'] = $request['full_name'];
+             $data['email'] = $request['email'];
+            Event::dispatch(new WelcomeEvent($welcome,$data));
 
         }
         return [
@@ -85,8 +81,10 @@ class UserService
                 $code=200;
 
                 //sending welcome email
-                $welcome= $message;
-                $data = $user->full_name;
+                $welcome= 'welcome back';
+                $data = [];
+                $data['name'] = $user->full_name;
+                $data['email'] = $request['email'];
                   Event::dispatch(new WelcomeEvent($welcome,$data));
             }else{
 
@@ -144,6 +142,11 @@ class UserService
                 $message = 'Accept this teacher in your app';
                 $code = 200;
 
+                $data = [];
+                $welcome= 'welcome in our app Your request has been accept ';
+                $data['name'] = $request['full_name'];
+                $data['email'] = $request['email'];
+                Event::dispatch(new WelcomeEvent($welcome,$data));
             } else {
 
                 $message = 'you dont have permission to accept teacher';
@@ -166,7 +169,6 @@ class UserService
         ];
     }
 
-
     //add teacher by admin in real life
     public function admin_adding_new_teacher($request) : array
     {
@@ -178,8 +180,10 @@ class UserService
             $code = 200;
 
             $welcome= 'welcome in our app ypu have been add by the admin';
-            $data = $request['full_name'];
-           // Event::dispatch(new WelcomeEvent($welcome,$data));
+            $data = [];
+            $data['name'] = $request['full_name'];
+            $data['email'] = $request['email'];
+            Event::dispatch(new WelcomeEvent($welcome,$data));
 
 
         }else{

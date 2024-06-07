@@ -28,7 +28,7 @@ class CheckTeacherMailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $admin = User::query()->find(19);
+        $admin = User::query()->find(1);
         Notification::send($admin , new CheckTeacherMail($this->data));
     }
 }

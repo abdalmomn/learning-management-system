@@ -17,7 +17,6 @@ class CheckTeacherMail extends Notification
      */
     public function __construct($data)
     {
-       // $this->welcome = $welcome;
         $this->data = $data;
 
     }
@@ -38,8 +37,9 @@ class CheckTeacherMail extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('Your Request for processing has been registered,please wait for response the admin')
-                    ->action('Notification Action', url('/'));
+                    ->line('This user  asked you about register in your app do you want to add him/her')
+                    ->action('Accept', url('/'));
+
     }
 
     /**
@@ -50,7 +50,6 @@ class CheckTeacherMail extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-           // 'message' => $this->welcome['message'],
             'data' => $this->data,
         ];
     }

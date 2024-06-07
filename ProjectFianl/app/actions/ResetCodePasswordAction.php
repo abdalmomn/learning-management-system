@@ -23,7 +23,7 @@ class ResetCodePasswordAction
             'created_at' => now(),
         ]);
 
-     //   Mail::to($request['email'])->send(new SendCodeResetPassword($codeData['code']));
+        Mail::to($request['email'])->send(new SendCodeResetPassword($codeData['code']));
         return [
             'data' => $codeData,
             'message' => 'send the new code to the input email',
