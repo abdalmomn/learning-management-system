@@ -13,6 +13,713 @@ class VideoSeeder extends Seeder
      */
     public function run(): void
     {
-        Video::factory(20)->create();
+       // Video::factory(20)->create();
+
+        $videos = [
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                 'description' => 'hay',
+                 'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  1,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' => 2,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  3,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  4,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  5,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  6,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  7,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  8,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  9,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+            [
+                'course_id' =>  10,
+                'title' => 'hay',
+                'description' => 'hay',
+                'url' => 'url',
+
+            ],
+        ];
+
+        foreach ($videos as $video){
+            Video::create($video);
+        }
     }
 }

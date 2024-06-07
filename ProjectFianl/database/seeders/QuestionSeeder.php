@@ -13,6 +13,14 @@ class QuestionSeeder extends Seeder
      */
     public function run(): void
     {
-        Question::factory(10)->create();
+      //  Question::factory(10)->create();
+        for ($j = 1 ; $j <= 10 ; $j++){
+            for ($i = 1 ; $i <= 10 ; $i++){
+            Question::create([
+                'quiz_id' => $j,
+                'question'=> 'q'.$i,
+            ]);
+        }
+        }
     }
 }

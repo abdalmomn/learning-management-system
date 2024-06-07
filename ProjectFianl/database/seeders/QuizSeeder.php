@@ -13,6 +13,12 @@ class QuizSeeder extends Seeder
      */
     public function run(): void
     {
-        Quiz::factory(10)->create();
+        //Quiz::factory(10)->create();
+        for ($i = 1 ; $i <= 10 ; $i++){
+            Quiz::create([
+                'course_id' => $i,
+            ]);
+        }
+
     }
 }

@@ -22,7 +22,7 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->string('type')->default('student');
-            $table->integer('mark');
+            $table->integer('mark')->nullable();
             $table->timestamps();
         });
     }

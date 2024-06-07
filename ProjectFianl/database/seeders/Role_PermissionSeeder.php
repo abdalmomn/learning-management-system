@@ -48,7 +48,7 @@ class Role_PermissionSeeder extends Seeder
             'email' => 'admin@example.com',
             'phone' => '+1.220.337.6304',
             'email_verified_at' => now(),
-            'password' => bcrypt('55555555'), // password
+            'password' => bcrypt('88888888'), // password
             'remember_token' => Str::random(10),
             'birthday'=>fake()->date(),
             'address'=>fake()->address(),
@@ -65,38 +65,306 @@ class Role_PermissionSeeder extends Seeder
 
         //create teacher with role and permissions
         $teacherUser=User::factory()->create([
-            'full_name' => 'teacherName',
-            'email' => 'teacher@example.com',
+            'full_name' => 'teacher1',
+            'email' => 'teacher1@example.com',
             'phone' => '+1.220.337.6302',
             'email_verified_at' => now(),
-            'password' => bcrypt('55555555'), // password
-            'remember_token' => Str::random(10),
-            'birthday'=>fake()->date(),
-            'address'=>fake()->address(),
-            'type'=>fake()->randomElement(['teacher']),
-            'image'=>fake()->text(30),
-            'wallet'=>fake()->randomDigit(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
         ]);
         $teacherUser->assignRole($teacherRole);
         $permissions=$teacherRole->permissions()->pluck('name')->toArray();
         $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
+
+        //create teacher with role and permissions
+        $teacherUser=User::factory()->create([
+            'full_name' => 'teacher2',
+            'email' => 'teacher2@example.com',
+            'phone' => '+1.220.337.6302',
+            'email_verified_at' => now(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
+        ]);
+        $teacherUser->assignRole($teacherRole);
+        $permissions=$teacherRole->permissions()->pluck('name')->toArray();
+        $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
+
+        //create teacher with role and permissions
+        $teacherUser=User::factory()->create([
+            'full_name' => 'teacher3',
+            'email' => 'teacher3@example.com',
+            'phone' => '+1.220.337.6302',
+            'email_verified_at' => now(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
+        ]);
+        $teacherUser->assignRole($teacherRole);
+        $permissions=$teacherRole->permissions()->pluck('name')->toArray();
+        $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
+
+        //create teacher with role and permissions
+        $teacherUser=User::factory()->create([
+            'full_name' => 'teacher4',
+            'email' => 'teacher4@example.com',
+            'phone' => '+1.220.337.6302',
+            'email_verified_at' => now(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
+        ]);
+        $teacherUser->assignRole($teacherRole);
+        $permissions=$teacherRole->permissions()->pluck('name')->toArray();
+        $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
+
+        //create teacher with role and permissions
+        $teacherUser=User::factory()->create([
+            'full_name' => 'teacher5',
+            'email' => 'teacher5@example.com',
+            'phone' => '+1.220.337.6302',
+            'email_verified_at' => now(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
+        ]);
+        $teacherUser->assignRole($teacherRole);
+        $permissions=$teacherRole->permissions()->pluck('name')->toArray();
+        $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
+
+        //create teacher with role and permissions
+        $teacherUser=User::factory()->create([
+            'full_name' => 'teacher6',
+            'email' => 'teacher6@example.com',
+            'phone' => '+1.220.337.6302',
+            'email_verified_at' => now(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
+        ]);
+        $teacherUser->assignRole($teacherRole);
+        $permissions=$teacherRole->permissions()->pluck('name')->toArray();
+        $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
+
+        //create teacher with role and permissions
+        $teacherUser=User::factory()->create([
+            'full_name' => 'teacher7',
+            'email' => 'teacher7@example.com',
+            'phone' => '+1.220.337.6302',
+            'email_verified_at' => now(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
+        ]);
+
+        //create teacher with role and permissions
+        $teacherUser=User::factory()->create([
+            'full_name' => 'teacher8',
+            'email' => 'teacher8@example.com',
+            'phone' => '+1.220.337.6302',
+            'email_verified_at' => now(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
+        ]);
+        $teacherUser->assignRole($teacherRole);
+        $permissions=$teacherRole->permissions()->pluck('name')->toArray();
+        $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
+
+        //create teacher with role and permissions
+        $teacherUser=User::factory()->create([
+            'full_name' => 'teacher9',
+            'email' => 'teacher9@example.com',
+            'phone' => '+1.220.337.6302',
+            'email_verified_at' => now(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
+        ]);
+        $teacherUser->assignRole($teacherRole);
+        $permissions=$teacherRole->permissions()->pluck('name')->toArray();
+        $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
+
+        //create teacher with role and permissions
+        $teacherUser=User::factory()->create([
+            'full_name' => 'teacher10',
+            'email' => 'teacher10@example.com',
+            'phone' => '+1.220.337.6302',
+            'email_verified_at' => now(),
+            'password' => bcrypt('66666666'), // password
+            'type' => 'teacher',
+            'wallet' => 2000,
+        ]);
+        $teacherUser->assignRole($teacherRole);
+        $permissions=$teacherRole->permissions()->pluck('name')->toArray();
+        $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
+
+        $teacherUser->assignRole($teacherRole);
+        $permissions=$teacherRole->permissions()->pluck('name')->toArray();
+        $teacherUser->givePermissionTo($permissions);
+        $teacherUser['token'] = $teacherUser->createToken("token")->plainTextToken;
 
         //create student with role and permissions
         $studentUser=User::factory()->create([
-            'full_name' => 'studentName',
-            'email' => 'student@example.com',
+            'full_name' => 'student1',
+            'email' => 'student1@example.com',
             'phone' => '+1.220.337.6303',
             'email_verified_at' => now(),
             'password' => bcrypt('55555555'), // password
-            'remember_token' => Str::random(10),
-            'birthday'=>fake()->date(),
-            'address'=>fake()->address(),
-            'type'=>fake()->randomElement(['student']),
-            'image'=>fake()->text(30),
-            'wallet'=>fake()->randomDigit(),
+            'type' => 'student',
+            'wallet' => 500,
         ]);
         $studentUser->assignRole($studentRole);
         $permissions=$studentRole->permissions()->pluck('name')->toArray();
         $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
+
+        //create student with role and permissions
+        $studentUser=User::factory()->create([
+            'full_name' => 'student2',
+            'email' => 'student2@example.com',
+            'phone' => '+1.220.337.6303',
+            'email_verified_at' => now(),
+            'password' => bcrypt('55555555'), // password
+            'type' => 'student',
+            'wallet' => 200,
+        ]);
+        $studentUser->assignRole($studentRole);
+        $permissions=$studentRole->permissions()->pluck('name')->toArray();
+        $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
+
+
+        //create student with role and permissions
+        $studentUser=User::factory()->create([
+            'full_name' => 'student3',
+            'email' => 'student3@example.com',
+            'phone' => '+1.220.337.6303',
+            'email_verified_at' => now(),
+            'password' => bcrypt('55555555'), // password
+            'type' => 'student',
+            'wallet' => 250,
+        ]);
+        $studentUser->assignRole($studentRole);
+        $permissions=$studentRole->permissions()->pluck('name')->toArray();
+        $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
+
+
+        //create student with role and permissions
+        $studentUser=User::factory()->create([
+            'full_name' => 'student4',
+            'email' => 'student4@example.com',
+            'phone' => '+1.220.337.6303',
+            'email_verified_at' => now(),
+            'password' => bcrypt('55555555'), // password
+            'type' => 'student',
+            'wallet' => 200,
+        ]);
+        $studentUser->assignRole($studentRole);
+        $permissions=$studentRole->permissions()->pluck('name')->toArray();
+        $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
+
+        //create student with role and permissions
+        $studentUser=User::factory()->create([
+            'full_name' => 'student5',
+            'email' => 'student5@example.com',
+            'phone' => '+1.220.337.6303',
+            'email_verified_at' => now(),
+            'password' => bcrypt('55555555'), // password
+            'type' => 'student',
+            'wallet' => 200,
+        ]);
+        $studentUser->assignRole($studentRole);
+        $permissions=$studentRole->permissions()->pluck('name')->toArray();
+        $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
+
+        //create student with role and permissions
+        $studentUser=User::factory()->create([
+            'full_name' => 'student6',
+            'email' => 'student6@example.com',
+            'phone' => '+1.220.337.6303',
+            'email_verified_at' => now(),
+            'password' => bcrypt('55555555'), // password
+            'type' => 'student',
+            'wallet' => 600,
+        ]);
+        $studentUser->assignRole($studentRole);
+        $permissions=$studentRole->permissions()->pluck('name')->toArray();
+        $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
+
+
+        //create student with role and permissions
+        $studentUser=User::factory()->create([
+            'full_name' => 'student7',
+            'email' => 'student7@example.com',
+            'phone' => '+1.220.337.6303',
+            'email_verified_at' => now(),
+            'password' => bcrypt('55555555'), // password
+            'type' => 'student',
+            'wallet' => 200,
+        ]);
+        $studentUser->assignRole($studentRole);
+        $permissions=$studentRole->permissions()->pluck('name')->toArray();
+        $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
+
+        //create student with role and permissions
+        $studentUser=User::factory()->create([
+            'full_name' => 'student8',
+            'email' => 'student8@example.com',
+            'phone' => '+1.220.337.6303',
+            'email_verified_at' => now(),
+            'password' => bcrypt('55555555'), // password
+            'type' => 'student',
+            'wallet' => 200,
+        ]);
+        $studentUser->assignRole($studentRole);
+        $permissions=$studentRole->permissions()->pluck('name')->toArray();
+        $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
+
+        //create student with role and permissions
+        $studentUser=User::factory()->create([
+            'full_name' => 'student9',
+            'email' => 'student9@example.com',
+            'phone' => '+1.220.337.6303',
+            'email_verified_at' => now(),
+            'password' => bcrypt('55555555'), // password
+            'type' => 'student',
+            'wallet' => 200,
+        ]);
+        $studentUser->assignRole($studentRole);
+        $permissions=$studentRole->permissions()->pluck('name')->toArray();
+        $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
+
+        //create student with role and permissions
+        $studentUser=User::factory()->create([
+            'full_name' => 'student10',
+            'email' => 'student10@example.com',
+            'phone' => '+1.220.337.6303',
+            'email_verified_at' => now(),
+            'password' => bcrypt('55555555'), // password
+            'type' => 'student',
+            'wallet' => 200,
+        ]);
+        $studentUser->assignRole($studentRole);
+        $permissions=$studentRole->permissions()->pluck('name')->toArray();
+        $studentUser->givePermissionTo($permissions);
+        $studentUser['token'] = $studentUser->createToken("token")->plainTextToken;
     }
 }
