@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CheckTeacherMail extends Notification
+class SendReportAboutTeacherMail extends Notification implements ShouldQueue
 {
     use Queueable;
     public $data;
@@ -16,8 +16,7 @@ class CheckTeacherMail extends Notification
      */
     public function __construct($data)
     {
-        $this->data = $data;
-
+        $this->data = $data ;
     }
 
     /**
@@ -36,9 +35,9 @@ class CheckTeacherMail extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('This user  asked you about register in your app do you want to add him/her')
-                    ->action('Accept', url('/'));
-
+            ->line('Report notification.')
+            ->line('User that number ' . $this->data['user_id'] . ' is complain from teacher number  '. $this->data['teacher_id'])
+            ->line('Because of '. $this->data['reason']);
     }
 
     /**
@@ -49,7 +48,9 @@ class CheckTeacherMail extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'data' => $this->data,
+            'user_id' => $this->data['user_id'],
+            'teacher_id' => $this->data['teacher_id'],
+            'reason' => $this->data['reason'],
         ];
     }
 }

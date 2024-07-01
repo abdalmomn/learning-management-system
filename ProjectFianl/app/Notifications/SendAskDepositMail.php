@@ -2,22 +2,23 @@
 
 namespace App\Notifications;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CheckTeacherMail extends Notification
+class SendAskDepositMail extends Notification //implements ShouldQueue
 {
     use Queueable;
     public $data;
+
     /**
      * Create a new notification instance.
      */
     public function __construct($data)
     {
         $this->data = $data;
-
     }
 
     /**
@@ -27,7 +28,7 @@ class CheckTeacherMail extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail','database'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -35,16 +36,22 @@ class CheckTeacherMail extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)
-                    ->line('This user  asked you about register in your app do you want to add him/her')
-                    ->action('Accept', url('/'));
+        // إنشاء رابط مع توقيع لتنفيذ طلب الإيداع
+        $url = URL::signedRoute('wallet.deposit', [
+            'user_id' => $this->data['user_id'],
+            'amount' => $this->data['amount']
+        ]);
 
+        return (new MailMessage)
+            ->line($this->data['name'] . ' asked you for deposit money')
+            ->line('User Name: ' . $this->data['name'])
+            ->line('User id: ' . $this->data['user_id'])
+            ->line('Amount: ' . $this->data['amount'])
+            ->action('Accept', $url);
     }
 
     /**
      * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
      */
     public function toArray(object $notifiable): array
     {

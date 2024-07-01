@@ -3,21 +3,19 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CheckTeacherMail extends Notification
+class sendReplayDepositMail extends Notification
 {
     use Queueable;
-    public $data;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct($data)
+    public function __construct()
     {
-        $this->data = $data;
-
+        //
     }
 
     /**
@@ -36,9 +34,8 @@ class CheckTeacherMail extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('This user  asked you about register in your app do you want to add him/her')
-                    ->action('Accept', url('/'));
-
+                    ->line('Your request has been successfully accepted')
+                    ->line('Thank you for using our application!');
     }
 
     /**
@@ -49,7 +46,7 @@ class CheckTeacherMail extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'data' => $this->data,
+            //
         ];
     }
 }

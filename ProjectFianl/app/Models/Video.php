@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Video extends Model
 {
@@ -32,6 +33,12 @@ class Video extends Model
     {
         return $this->belongsToMany(Comment::class)->whereNull('parent_id');
     }
+
+    public function comments_without_replies() : hasMany
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+
 
 
 

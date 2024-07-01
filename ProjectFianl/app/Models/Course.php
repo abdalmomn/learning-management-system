@@ -48,5 +48,10 @@ class Course extends Model
         return $this->hasMany(User_video_pivot::class,'course_id');
     }
 
+    public function enrollments()
+    {
+        return $this->hasMany(Course_user_pivot::class);
+    }
+
 
 }

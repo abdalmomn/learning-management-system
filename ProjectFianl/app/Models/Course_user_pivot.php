@@ -15,9 +15,9 @@ class Course_user_pivot extends Model
       'paid',
       'favorite',
     ];
-    public function user() : belongsTo
+    public function users() : belongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     public function course() : belongsTo

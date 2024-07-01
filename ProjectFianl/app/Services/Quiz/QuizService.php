@@ -2,13 +2,17 @@
 
 namespace App\Services\Quiz;
 
+use App\Mail\certificate;
 use App\Models\Course;
 use App\Models\Course_user_pivot;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\Quiz_user_pivot;
+use App\Models\Transaction;
+use App\Models\User;
 use App\Models\User_video_pivot;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class QuizService
 {
@@ -309,77 +313,128 @@ class QuizService
      }
 
      //function to submit the answers from quiz and add mark
-    public function submit_quiz($request,$quiz_id) : array
+    public function submit_quiz($request, $quiz_id): array
     {
+        // العثور على الكويز بواسطة معرف الكويز
         $quiz = Quiz::query()->where('id',$quiz_id)->first();
-        if (!is_null($quiz)){
-        if (Auth::user()->hasRole('student')){
-            $found = Quiz_user_pivot::query()
-                ->where('type','student')
-                ->where('user_id',Auth::id())
-                ->where('quiz_id',$quiz_id)->first();
-            if (!$found){
-                //get count of video in this course
-                $Video = Course::query()->withCount('videos')->find($quiz->course_id);
-                $countVideo = $Video['videos_count'];
+        if (!is_null($quiz)) {
+            // التحقق مما إذا كان المستخدم له دور "طالب"
+            if (Auth::user()->hasRole('student')) {
+                $found = Quiz_user_pivot::query()
+                    ->where('type', 'student')
+                    ->where('user_id', Auth::id())
+                    ->where('quiz_id', $quiz_id)
+                    ->first();
+                if (!$found) {
+                    // الحصول على عدد الفيديوهات في هذا الكورس
+                    $course = Course::query()->withCount('videos')->find($quiz->course_id);
+                    $countVideo = $course->videos_count;
 
-                //get id for all quiz answers and insert them to $answersTrue array
-                $questions = Question::query()->where('quiz_id',$quiz_id)->with('answers')->get();
-                $answersTrue =[];
-                for ($j = 0 ; $j >9 ; $j++){
-                    for ($i = 0 ;$i > 4;$i++){
-                        if($questions[$j]->answers[$i]->role == 1){
-                            $answersTrue = $questions[$j]->answers[$i]->id;
-                            $i = 4;
+                    // الحصول على جميع الأسئلة وإجاباتها في هذا الاختبار
+                    $questions = Question::query()->where('quiz_id', $quiz_id)->with('answers')->get();
+                    $trueAnswerId = [];
+
+                    // بناء مصفوفة تحتوي على ID الإجابات الصحيحة
+                    foreach ($questions as $question) {
+                        foreach ($question->answers as $answer) {
+                            if ($answer->role == 1) { // role == 1 يعني الإجابة الصحيحة
+                                $trueAnswerId[] = $answer->id;
+                                break;
+                            }
                         }
-                    }}
-
-                //get array from student contain id the answers
-                $answersStudent = [];
-                $answers = $request['answers'];
-                $mark = 0 ;
-                //compare between two arrays
-                for ($i = 0 ; $i > 9 ; $i++){
-                    if ($answers[$i] == $answersTrue[$i]){
-                        $mark = $mark + (1/$countVideo);
                     }
+
+                    // مصفوفة الإجابات الخاصة بالطالب
+                    $answersStudent = $request['answers'];
+                    $mark = 0;
+
+                    // المقارنة بين الإجابات الصحيحة وإجابات الطالب
+                    foreach ($trueAnswerId as $index => $trueAnswer) {
+                        if (isset($answersStudent[$index]) && $answersStudent[$index] == $trueAnswer) {
+                         //   $mark += (1 / $countVideo);
+                            $mark += 1;
+                        }
+                    }
+
+                    // تسجيل نتيجة الطالب في جدول الكسر
+                    Quiz_user_pivot::query()->create([
+                        'user_id' => Auth::id(),
+                        'quiz_id' => $quiz_id,
+                        'type' => 'student',
+                        'mark' => $mark
+                    ]);
+
+                    $userId = Auth::id();
+                    $user = User::query()->where('id' , $userId)->first();
+                    $userEmail = $user->email ;
+
+                    $course = Course::query()->where('id' , $quiz->course_id)->first();
+                    $discount_value = ($course->price) * 0.10 ;
+
+                    // معالجة حالات خاصة بناءً على النتيجة
+                    if ($mark == 10) {
+
+                        User::query()->where('id',$userId)->update([
+                            'wallet' => $user->wallet + $discount_value,
+                        ]);
+
+                        Transaction::create([
+                            'user_id' => $userId,
+                            'course_id' =>$course->id,
+                            'type' => 'discount',
+                            'amount' => $discount_value,
+                        ]);
+
+                        $data = [];
+                        $data['message'] = 'Excellent. You got a perfect mark on this test. You got coupons worth ten percent of the price of this course. These coupons have been added to your balance.';
+                        $data['mark'] = $mark;
+                        $data['name'] = $user->full_name;
+                        $data['courseName'] = $course->name;
+                        Mail::to($userEmail)->send(new certificate($data));
+                    } else if ($mark == 9 || $mark == 8 ||$mark == 7) {
+                        $data = [];
+                        $data['message'] = 'Very Good. You got a good mark on this test.';
+                        $data['mark'] = $mark;
+                        $data['name'] = $user->full_name;
+                        $data['courseName'] = $course->name;
+                        Mail::to($userEmail)->send(new certificate($data));
+                    }else{
+                        $data = [];
+                        $data['message'] = 'Sorry, you failed in this test';
+                        $data['mark'] = $mark;
+                        $data['name'] = $user->full_name;
+                        $data['courseName'] = $course->name;
+                        Mail::to($userEmail)->send(new certificate($data));
+                    }
+
+                    $data = [];
+                    $data['mark'] = $mark . ' From 10';
+                    $data['answers'] = $answersStudent;
+                    $message = 'Your mark';
+                    $code = 200;
+                } else {
+                    $data = [];
+                    $message = 'You have already solved this quiz';
+                    $code = 403;
                 }
-
-                Quiz_user_pivot::query()->create([
-                    'user_id' => Auth::id(),
-                    'quiz_id' => $quiz_id,
-                    'type' => 'student',
-                    'mark' => $mark
-                ]);
-                //
-             //   ازا جاب علامة تامة بينبعت ايميل شهادة امتياز مع معالجة حالتين تلاتة وازا جاب اقل من 40% بيرسب
-
-                $answer = $mark;
-                $message = 'Your mark';
-                $code = 200;
-
-            }else{
-                $answer =[];
-                $message = 'Your already solve this quiz';
+            } else {
+                $data = [];
+                $message = 'This test is not for you';
                 $code = 403;
             }
-        }else{
-            $answer =[];
-            $message = 'This test not for you';
-            $code = 403;
-        }
-        }else{
-            $answer =[];
-            $message = 'This quiz Not found ';
-            $code = 403;
+        } else {
+            $data = [];
+            $message = 'This quiz was not found';
+            $code = 404;
         }
 
-            return [
-                'answer' => $answer,
-                'message' => $message,
-                'code' => $code,
-            ];
+        return [
+            'data' => $data,
+            'message' => $message,
+            'code' => $code,
+        ];
     }
+
 
 
 

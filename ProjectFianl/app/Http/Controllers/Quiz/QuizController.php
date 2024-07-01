@@ -100,7 +100,7 @@ class QuizController extends Controller
         $data = [];
         try {
             $data = $this->quizService->submit_quiz($request->validated(),$quiz_id);
-            return Response::Success($data['quiz'],$data['message'],$data['code']);
+            return Response::Success($data['data'],$data['message'],$data['code']);
 
         }catch (\Throwable $th){
             $message=$th->getMessage();

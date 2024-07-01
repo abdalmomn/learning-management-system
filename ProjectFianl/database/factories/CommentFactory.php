@@ -23,7 +23,6 @@ class CommentFactory extends Factory
             'user_id'=>User::get()->random()->id,
             'video_id'=>Video::get()->random()->id,
             'comment'=>fake()->paragraph(1),
-           'parent_id'=>fake()->randomDigit(),
         ];
     }
 }

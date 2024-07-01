@@ -36,6 +36,22 @@ class UserOperationController extends Controller
 
     }
 
+    //api to get all students in special course
+    public function show_student_special_course($course_id) : JsonResponse
+    {
+        $data = [];
+        try {
+            $data = $this->userOperationService->show_student_special_course($course_id);
+            return Response::Success($data['data'],$data['message'],$data['code']);
+
+        }catch (Throwable $th){
+            $message=$th->getMessage();
+            return Response::Error($data,$message);
+
+        }
+
+    }
+
     //api for show all teachers in app by admin
     public function show_teachers() : JsonResponse
     {
@@ -43,6 +59,22 @@ class UserOperationController extends Controller
         try {
             $data = $this->userOperationService->show_teachers();
             return Response::Success($data['user'],$data['message'],$data['code']);
+
+        }catch (Throwable $th){
+            $message=$th->getMessage();
+            return Response::Error($data,$message);
+
+        }
+
+    }
+
+    //api to get all teachers in special subject
+    public function show_teachers_by_subject($subject_id) : JsonResponse
+    {
+        $data = [];
+        try {
+            $data = $this->userOperationService->show_teachers_by_subject($subject_id);
+            return Response::Success($data['data'],$data['message'],$data['code']);
 
         }catch (Throwable $th){
             $message=$th->getMessage();

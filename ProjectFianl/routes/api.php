@@ -5,7 +5,11 @@ use App\Http\Controllers\Auth\UserOperationController;
 use App\Http\Controllers\Course\CourseController;
 use App\Http\Controllers\Course\SubjectController;
 use App\Http\Controllers\Course\VideoController;
+use App\Http\Controllers\Operation\CommentsAndRepliesController;
+use App\Http\Controllers\Operation\NotificationOperationController;
+use App\Http\Controllers\Operation\StudentAndTeacherOperationController;
 use App\Http\Controllers\Operation\SearchController;
+use App\Http\Controllers\Operation\WalletOperationController;
 use App\Http\Controllers\Quiz\AnswerController;
 use App\Http\Controllers\Quiz\QuestionController;
 use App\Http\Controllers\Quiz\QuizController;
@@ -51,6 +55,48 @@ Route::middleware('auth:sanctum')->group(function (){
 
 });
 
+//Routes for course operation by bashir
+Route::middleware('auth:sanctum')->group(function (){
+    Route::controller(StudentAndTeacherOperationController::class)->group(function (){
+        Route::get('best_seller/{subject_id}' , 'best_seller')->name('best_seller.course');
+        Route::post('send_report_student/{student_id}' , 'send_report_student');
+        Route::post('send_report_teacher/{teacher_id}' , 'send_report_teacher');
+        Route::get('get_reports' , 'get_reports');
+
+
+
+    });
+
+});
+
+//Routes for course operation by bashir
+Route::middleware('auth:sanctum')->group(function (){
+    Route::controller(CommentsAndRepliesController::class)->group(function (){
+        Route::get('get_comments/{video_id}' , 'get_comments');
+        Route::get('get_replies/{comment_id}' , 'get_replies');
+        Route::post('add_comment/{video_id}' , 'add_comment');
+        Route::post('add_reply/{comment_id}' , 'add_reply');
+        Route::get('delete_comment/{comment_id}' , 'delete_comment');
+
+
+    });
+
+});
+
+//Routes for wallet operation
+Route::middleware('auth:sanctum')->group(function (){
+    Route::prefix('wallet')->controller(WalletOperationController::class)->group(function (){
+        Route::post('asked_deposit',  'asked_deposit')->name('asked_deposit.deposit');
+        Route::get('deposit', 'deposit')->name('wallet.deposit')->middleware('signed');
+        Route::post('withdraw',  'withdraw')->name('wallet.withdraw');
+        Route::get('balance',  'balance')->name('wallet.balance');
+        Route::get('transactions',  'transactions')->name('wallet.transactions');
+
+
+
+    });
+
+});
 
 //Routes for video operation
 Route::middleware('auth:sanctum')->group(function (){
@@ -95,7 +141,9 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::controller(UserOperationController::class)->group(function () {
         Route::get('show_students', 'show_students')->name('students.show')->middleware('can:show.students');//بدي اكد على ه
+        Route::get('show_student_special_course/{course_id}', 'show_student_special_course')->name('students.show')->middleware('can:show.students');//بدي اكد على ه
         Route::get('show_teachers', 'show_teachers')->name('teachers.show')->middleware('can:show.teachers');
+        Route::get('show_teachers_by_subject/{subject_id}', 'show_teachers_by_subject')->name('teachers.show')->middleware('can:show.teachers');
         Route::get('delete_student/{id}', 'delete_student')->name('delete.student')->middleware('can:delete.student');
         Route::get('delete_teacher/{id}', 'delete_teacher')->name('delete.teacher')->middleware('can:delete.teacher');
         Route::post('update_profile', 'update_profile')->name('update.profile');
@@ -139,6 +187,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(SearchController::class)->group(function (){
         Route::post('search_course/{subject_id}','search_course')->name('search.course');
         Route::post('search_video/{course_id}','search_video')->name('search.course');
+
+    });
+
+    //Routes for notifications operations
+    Route::controller(NotificationOperationController::class)->group(function (){
+        Route::get('get_all_notifications_read','get_all_notifications_read')->name('get.notification.read');
+        Route::get('get_all_notifications_not_read','get_all_notifications_not_read')->name('get.notification.notRead');
+        Route::post('markAsRead/{notification_id}','markAsRead')->name('get.notification.notRead');
 
 
     });
