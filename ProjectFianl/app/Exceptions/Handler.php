@@ -45,7 +45,7 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (AccessDeniedHttpException $e,$request) {
             return Response::Error('',
-                'You do not have the required authorization',
+                __('strings.You do not have the required authorization'),
                 403
             );
         });

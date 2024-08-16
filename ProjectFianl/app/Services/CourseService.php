@@ -32,10 +32,10 @@ class CourseService
                 }
             }
             if ($courses){
-                    $message = 'Getting all courses for this teacher';
+                    $message = __('strings.Getting all courses for this teacher');
                     $code=200;
             }else{
-                $message = 'There are no courses for this teacher at the moment or teacher not found';
+                $message = __('strings.There are no courses for this teacher at the moment or teacher not found');
                 $code=404;
             }
         if ($teacher_name)
@@ -72,16 +72,16 @@ class CourseService
         if ($course && $pivot){
             $teacher_name = $pivot->username;
             if (!$video->isEmpty()){
-                $message = 'getting all videos for this course';
+                $message = __('strings.getting all videos for this course');
                 $code = 200;
             }else{
                 $video = [];
-                $message = 'there are no videos at the moment';
+                $message = __('strings.there are no videos at the moment');
                 $code = 404;
             }
         }else{
             $teacher_name = 'none';
-            $message = 'course not found';
+            $message = __('strings.course not found');
             $code = 404;
         }
         $video['teacher_name'] = $teacher_name;
@@ -103,10 +103,10 @@ class CourseService
             ->where('subject_id',$subject_id)
             ->get();
         if ($courses->isEmpty()){
-            $message = 'There are no courses for this subject at the moment';
+            $message = __('strings.There are no courses for this subject at the moment');
             $code=404;
         }else{
-            $message = 'Getting all courses for this subject';
+            $message = __('strings.Getting all courses for this subject');
             $code=200;
         }
         return [
@@ -132,10 +132,10 @@ class CourseService
             }
         }
         if (!$courses){
-            $message = 'There are no courses for this subject at the moment';
+            $message = __('strings.There are no courses for this subject at the moment');
             $code=404;
         }else{
-            $message = 'Getting all paided courses';
+            $message = __('strings.Getting all paided courses');
             $code=200;
         }
         return [
@@ -162,11 +162,11 @@ class CourseService
                 'user_id' => Auth::id(),
                 'course_id' => $course->id,
             ]);
-            $message = 'Course created successfully';
+            $message = __('strings.Course created successfully');
             $code=200;
         }else{
             $course = [];
-            $message = 'you dont have permission for creating a course';
+            $message = __('strings.you dont have permission for creating a course');
             $code=403;
         }
         return [
@@ -199,19 +199,19 @@ class CourseService
                     $code=200;
                 } else {
                     $course = [];
-                    $message = 'you dont have permission for updating this course';
+                    $message = __('strings.you dont have permission for updating this course');
                     $code=403;
                 }
 
             }else{
                 $course = [];
-                $message = 'This course does not belongs to you to delete it or not found in data';
+                $message = __('strings.This course does not belongs to you to delete it or not found in data');
                 $code = 403;
             }
         }
         else{
             $course = [];
-            $message = 'This course not found';
+            $message = __('strings.The course not found');
             $code=404;
         }
 
@@ -236,18 +236,18 @@ class CourseService
                 } else {
 
                     $course = $course->delete();
-                    $message = 'Deleting course successfully';
+                    $message = __('strings.Deleting course successfully');
                     $code = 200;
                 }
             }
             else{
                 $course = [];
-                $message = 'This course does not belongs to you to delete it or not found in data';
+                $message = __('strings.This course does not belongs to you to delete it or not found in data');
                 $code = 403;
             }
         }else{
             $course = [];
-            $message = 'This course not found';
+            $message = __('strings.The course not found');
             $code=404;
         }
 
@@ -314,16 +314,16 @@ class CourseService
                     ]);
                 }
 
-                $message = 'Course has been paid successfully';
+                $message = __('strings.Course has been paid successfully');
                 $code = 200;
             } else {
                 $course = [];
-                $message = 'You have run out of funds';
+                $message = __('strings.You have run out of funds');
                 $code = 403;
             }
         } else {
             $course = [];
-            $message = 'Course not found';
+            $message = __('strings.Course not found');
             $code = 404;
         }
 
@@ -466,7 +466,7 @@ class CourseService
                     ->where('user_id' , Auth::id())->update([
                         'favorite' => 1
                     ]);
-                $message = 'added successfully';
+                $message = __('strings.added successfully');
                 $code = 200;
             }else{ //else if does not exist => create
 
@@ -476,11 +476,11 @@ class CourseService
                     'paid' => 0,
                     'favorite' => 1
                 ]);
-                $message = 'added successfully';
+                $message = __('strings.added successfully');
                 $code = 200;
             }
         }else{
-            $message = 'course not found';
+            $message = __('strings.course not found');
             $code = 404;
         }
         return [
@@ -507,11 +507,11 @@ class CourseService
                 ->where('user_id' , Auth::id())->update([
                     'favorite' => 0
                 ]);
-            $message = 'removed successfully';
+            $message = __('strings.removed successfully');
             $code = 200;
         }else{
             $course = [];
-            $message = 'course not found';
+            $message = __('strings.course not found');
             $code = 200;
         }
         return [
@@ -531,10 +531,10 @@ class CourseService
             ->where('id' , $courses_from_pivot)->get();
 
         if (!$courses_from_pivot){
-            $message = 'there are no favorites at the moment';
+            $message = __('strings.there are no favorites at the moment');
             $code = 404;
         }else{
-            $message = 'all favorite courses';
+            $message = __('strings.all favorite courses');
             $code = 200;
         }
         return [
@@ -586,16 +586,16 @@ class CourseService
                         $course->valuation = $rate_sum / $rate_count;
                         $course->save();
                     }
-                    $message = 'rated success';
+                    $message = __('strings.rated success');
                     $code = 200;
                 }else{
                     $course = [];
-                    $message = 'you must watch 75% of the videos first';
+                    $message = __('strings.you must watch 75% of the videos first');
                     $code = 403;
                 }
             }else {
                 $course = [];
-                $message = 'course not found';
+                $message = __('strings.course not found');
                 $code = 403;
             }
 

@@ -26,19 +26,19 @@ class QuestionService
                                 'question' => $request['question'],
                             ]);
 
-                            $message = 'Adding question successfully';
+                            $message = __('strings.Adding question successfully');
                             $code = 200;
 
 
                     } else {
 
-                        $message = 'This quiz has already ten question you can not add more than ten';
+                        $message = __('strings.This quiz has already ten question you can not add more than ten');
                         $code = 403;
 
                     }
                 }else{
 
-                    $message = 'Quiz does not belongs to you to add question on it';
+                    $message = __('strings.Quiz does not belongs to you to add question on it');
                     $code = 401;
 
                 }
@@ -46,12 +46,12 @@ class QuestionService
 
             } else {
 
-                $message = 'You do not have permission to add question';
+                $message = __('strings.You do not have permission to add question');
                 $code = 401;
 
             }
         } else {
-            $message = 'This quiz not found';
+            $message = __('strings.This quiz not found');
             $code = 404;
         }
 
@@ -73,18 +73,18 @@ class QuestionService
                 if(!is_null($user) && $user->user_id == Auth::id()) {
 
                         $question->delete();
-                        $message = 'Delete question successfully';
+                        $message = __('strings.Delete question successfully');
                         $code = 200;
 
                 }else{
                     $question = [];
-                    $message = 'This question does not belongs to you';
+                    $message = __('strings.This question does not belongs to you');
                     $code = 403;
 
                 }
                 } else {
                     $question = [];
-                    $message = 'You do not have permission to add question';
+                    $message = __('strings.You do not have permission to add question');
                     $code = 401;
 
                 }
@@ -92,7 +92,7 @@ class QuestionService
         } else {
 
             $question = [];
-            $message = 'This question not found';
+            $message = __('strings.This question not found');
             $code = 404;
 
         }
@@ -116,18 +116,18 @@ class QuestionService
                              $question->update([
                             'question' => $request['question'] ?? $question->question,
                         ]);
-                        $message = 'Update question successfully';
+                        $message = __('strings.Update question successfully');
                         $code = 200;
 
                     }else{
                         $question = [];
-                        $message = 'This question belongs to another teacher';
+                        $message = __('strings.This question belongs to another teacher');
                         $code = 403;
 
                     }
             } else {
                 $question = [];
-                $message = 'You do not have permission to update question';
+                $message = __('strings.You do not have permission to update question');
                 $code = 401;
 
             }
@@ -135,7 +135,7 @@ class QuestionService
         } else {
 
             $question = [];
-            $message = 'This question not found';
+            $message = __('strings.This question not found');
             $code = 404;
 
         }
@@ -158,7 +158,7 @@ class QuestionService
 
                     if (Auth::user()->hasRole('admin')) {
 
-                        $message = 'Getting all question in this quiz successfully';
+                        $message = __('strings.Getting all question in this quiz successfully');
                         $code = 200;
 
                     }
@@ -166,31 +166,31 @@ class QuestionService
                         $questionUsers = Quiz_user_pivot::query()->where('type', 'teacher')->where('user_id', Auth::id())->where('quiz_id', $quiz_id)->first();
                         if ($questionUsers) {
 
-                            $message = 'Getting all your quizzes successfully';
+                            $message = __('strings.Getting all your quizzes successfully');
                             $code = 200;
 
 
                         } else {
                             $question = [];
-                            $message = 'You do not have any quiz';
+                            $message = __('strings.You do not have any quiz');
                             $code = 404;
                         }
                     }
 
                 } else {
                     $question = [];
-                    $message = 'You do not have any permission to show question for this quiz';
+                    $message = __('strings.You do not have any permission to show question for this quiz');
                     $code = 401;
 
                 }
             } else {
                 $question = [];
-                $message = 'Not found any question in this quiz';
+                $message = __('strings.Not found any question in this quiz');
                 $code = 404;
             }
         }else{
             $question = [];
-            $message = 'This quiz not found';
+            $message = __('strings.This quiz not found');
             $code = 404;
         }
 

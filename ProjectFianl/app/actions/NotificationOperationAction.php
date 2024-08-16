@@ -16,10 +16,10 @@ class NotificationOperationAction
             ->orderBy('created_at', 'desc')
             ->get();
         if ($notifications->isNotEmpty()){
-            $message = 'Getting all notifications';
+            $message = __('strings.Getting all notifications');
             $code = 200;
         }else{
-            $message = 'There is no any notification in this time';
+            $message = __('strings.There is no any notification in this time');
             $code = 404;
         }
 
@@ -39,10 +39,10 @@ class NotificationOperationAction
             ->orderBy('created_at', 'desc')
             ->get();
         if ($notifications->isNotEmpty()){
-            $message = 'Getting all notifications';
+            $message = __('strings.Getting all notifications');
             $code = 200;
         }else{
-            $message = 'There is no any notification in this time';
+            $message = __('strings.There is no any notification in this time');
             $code = 404;
         }
 
@@ -68,10 +68,10 @@ class NotificationOperationAction
                 ->where('notifiable_id', Auth::id())
                 ->update([
                     'read_at' => now(),
-                ]);                $message = 'Notification marked as read';
+                ]);                $message = __('strings.Notification marked as read');
                 $code = 200;
         } else {
-                $message = 'Notification not found';
+                $message = __('strings.Notification not found');
                 $code = 404;
         }
         return [

@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\UserOperationController;
 use App\Http\Controllers\Course\CourseController;
 use App\Http\Controllers\Course\SubjectController;
 use App\Http\Controllers\Course\VideoController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\Operation\CommentsAndRepliesController;
 use App\Http\Controllers\Operation\NotificationOperationController;
 use App\Http\Controllers\Operation\StudentAndTeacherOperationController;
@@ -50,9 +52,7 @@ Route::middleware('auth:sanctum')->group(function (){
         Route::post('remove_from_favorite/{course_id}' , 'remove_from_favorite')->name('remove_from_favorite.course');
         Route::get('show_favorite' , 'show_favorite')->name('show_favorite.course');
         Route::post('add_rate_for_course/{course_id}' , 'add_rate_for_course')->name('add_rate_for_course.course');
-
     });
-
 });
 
 //Routes for course operation by bashir
@@ -62,11 +62,7 @@ Route::middleware('auth:sanctum')->group(function (){
         Route::post('send_report_student/{student_id}' , 'send_report_student');
         Route::post('send_report_teacher/{teacher_id}' , 'send_report_teacher');
         Route::get('get_reports' , 'get_reports');
-
-
-
     });
-
 });
 
 //Routes for course operation by bashir
@@ -77,25 +73,7 @@ Route::middleware('auth:sanctum')->group(function (){
         Route::post('add_comment/{video_id}' , 'add_comment');
         Route::post('add_reply/{comment_id}' , 'add_reply');
         Route::get('delete_comment/{comment_id}' , 'delete_comment');
-
-
     });
-
-});
-
-//Routes for wallet operation
-Route::middleware('auth:sanctum')->group(function (){
-    Route::prefix('wallet')->controller(WalletOperationController::class)->group(function (){
-        Route::post('asked_deposit',  'asked_deposit')->name('asked_deposit.deposit');
-        Route::get('deposit', 'deposit')->name('wallet.deposit')->middleware('signed');
-        Route::post('withdraw',  'withdraw')->name('wallet.withdraw');
-        Route::get('balance',  'balance')->name('wallet.balance');
-        Route::get('transactions',  'transactions')->name('wallet.transactions');
-
-
-
-    });
-
 });
 
 //Routes for video operation
@@ -111,7 +89,6 @@ Route::middleware('auth:sanctum')->group(function (){
         Route::get('add_dislike/{video_id}' , 'add_dislike')->name('video.add_dislike');
         Route::get('remove_dislike/{video_id}' , 'remove_dislike')->name('video.remove_dislike');
     });
-
 });
 
 //show : category section subjects
@@ -120,6 +97,17 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('section' , 'show_sections');
         Route::get('category/{section_id}' , 'show_categories');
         Route::get('subject/{category_id}' , 'show_subjects');
+    });
+});
+
+//Routes for wallet operation
+Route::middleware('auth:sanctum')->group(function (){
+    Route::prefix('wallet')->controller(WalletOperationController::class)->group(function (){
+        Route::post('asked_deposit',  'asked_deposit')->name('asked_deposit.deposit');
+        Route::get('deposit', 'deposit')->name('wallet.deposit')->middleware('signed');
+        Route::post('withdraw',  'withdraw')->name('wallet.withdraw');
+        Route::get('balance',  'balance')->name('wallet.balance');
+        Route::get('transactions',  'transactions')->name('wallet.transactions');
     });
 });
 
@@ -148,7 +136,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('delete_teacher/{id}', 'delete_teacher')->name('delete.teacher')->middleware('can:delete.teacher');
         Route::post('update_profile', 'update_profile')->name('update.profile');
         Route::get('show_profile', 'show_profile')->name('show.profile');
-
     });
 });
 
@@ -166,37 +153,37 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('sh','sh');
     });
 
-    //Routes for questions
-    Route::controller(QuestionController::class)->group(function () {
-        Route::post('create_question/{quiz_id}', 'create_question')->name('create.question')->middleware('can:create.quiz');
-        Route::post('update_question/{question_id}', 'update_question')->name('update.question')->middleware('can:update.quiz');
-        Route::get('delete_question/{question_id}', 'delete_question')->name('delete.question')->middleware('can:delete.quiz');
-        Route::get('show_question/{quiz_id}', 'show_question')->name('show.question')->middleware('can:show.quiz');
-
-    });
-    //Routes for answers
-    Route::controller(AnswerController::class)->group(function (){
-        Route::post('create_answer/{question_id}','create_answer')->name('create.answer')->middleware('can:create.quiz');
-        Route::get('delete_answer/{answer_id}','delete_answer')->name('delete.answer')->middleware('can:delete.quiz');
-        Route::post('update_answer/{answer_id}','update_answer')->name('update.answer')->middleware('can:update.quiz');
-        Route::get('show_answer/{question_id}', 'show_answer')->name('show.answer')->middleware('can:show.quiz');
-
-    });
-
-    //Routes for operations
-    Route::controller(SearchController::class)->group(function (){
-        Route::post('search_course/{subject_id}','search_course')->name('search.course');
-        Route::post('search_video/{course_id}','search_video')->name('search.course');
-
-    });
-
-    //Routes for notifications operations
-    Route::controller(NotificationOperationController::class)->group(function (){
-        Route::get('get_all_notifications_read','get_all_notifications_read')->name('get.notification.read');
-        Route::get('get_all_notifications_not_read','get_all_notifications_not_read')->name('get.notification.notRead');
-        Route::post('markAsRead/{notification_id}','markAsRead')->name('get.notification.notRead');
-
-
-    });
-
+//Routes for questions
+Route::controller(QuestionController::class)->group(function () {
+    Route::post('create_question/{quiz_id}', 'create_question')->name('create.question')->middleware('can:create.quiz');
+    Route::post('update_question/{question_id}', 'update_question')->name('update.question')->middleware('can:update.quiz');
+    Route::get('delete_question/{question_id}', 'delete_question')->name('delete.question')->middleware('can:delete.quiz');
+    Route::get('show_question/{quiz_id}', 'show_question')->name('show.question')->middleware('can:show.quiz');
 });
+
+//Routes for answers
+Route::controller(AnswerController::class)->group(function (){
+    Route::post('create_answer/{question_id}','create_answer')->name('create.answer')->middleware('can:create.quiz');
+    Route::get('delete_answer/{answer_id}','delete_answer')->name('delete.answer')->middleware('can:delete.quiz');
+    Route::post('update_answer/{answer_id}','update_answer')->name('update.answer')->middleware('can:update.quiz');
+    Route::get('show_answer/{question_id}', 'show_answer')->name('show.answer')->middleware('can:show.quiz');
+});
+
+//Routes for search operation
+Route::controller(SearchController::class)->group(function (){
+    Route::post('search_course/{subject_id}','search_course')->name('search.course');
+    Route::post('search_video/{course_id}','search_video')->name('search.course');
+});
+
+//Routes for notifications operations
+Route::controller(NotificationOperationController::class)->group(function (){
+    Route::get('get_all_notifications_read','get_all_notifications_read')->name('get.notification.read');
+    Route::get('get_all_notifications_not_read','get_all_notifications_not_read')->name('get.notification.notRead');
+    Route::post('markAsRead/{notification_id}','markAsRead')->name('get.notification.notRead');
+});
+});
+
+//Localization API
+Route::get('/lang/{lang}' , [LangController::class, 'changeLanguage']);
+
+

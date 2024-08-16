@@ -15,19 +15,19 @@ class CommentsAndRepliesAction
 
      if (!is_null($video)) {
             if (!$comments->isEmpty()) {
-                $message = 'Getting all comments successfully';
+                $message = __('strings.Getting all comments successfully');
                 $code = 200;
 
             } else {
 
                 $comments = [];
-                $message = 'There is no comments for this video';
+                $message = __('strings.There is no comments for this video');
                 $code = 404;
 
             }
         }else{
             $comments = [];
-            $message = 'There is no video in this id';
+            $message = __('strings.There is no video in this id');
             $code = 404;
         }
 
@@ -44,7 +44,7 @@ class CommentsAndRepliesAction
 
         $comments = Comment::query()->where('id', $comment_id)
             ->with('ALL_replies.ALL_replies.ALL_replies.ALL_replies.ALL_replies')->get();
-        $message = 'Getting all comments successfully';
+        $message = __('strings.Getting all comments successfully');
         $code = 200;
 
 
@@ -63,7 +63,7 @@ class CommentsAndRepliesAction
             'video_id' => $video_id,
             'comment' => $request['comment'],
         ]);
-        $message = 'Create comment successfully';
+        $message = __('strings.Create comment successfully');
         $code = 200;
 
         return [
@@ -82,7 +82,7 @@ class CommentsAndRepliesAction
             'parent_id' => $comment_id,
             'comment' => $request['comment'],
         ]);
-        $message = 'Create reply successfully';
+        $message = __('strings.Create reply successfully');
         $code = 200;
 
         return [
@@ -110,16 +110,16 @@ class CommentsAndRepliesAction
             $code = 200;
         }else if (Auth::user()->hasRole('teacher') &&  $tr){
             $comment->delete();
-            $message = 'Deleting comment successfully';
+            $message = __('strings.Deleting comment successfully');
             $code = 200;
         }else if ( $comment->user_id == Auth::id()){
 
             $comment->delete();
-            $message = 'Deleting comment successfully';
+            $message = __('strings.Deleting comment successfully');
             $code = 200;
         }else{
 
-            $message = 'You do not have permission to delete it';
+            $message = __('strings.You do not have permission to delete it');
             $code = 403;
 
         }

@@ -7,6 +7,7 @@ use App\Http\Requests\Course\AddingRateRequest;
 use App\Http\Requests\Course\CreateCourseRequest;
 use App\Http\Requests\Course\UpdateCourseRequest;
 use App\Http\Responses\Response;
+use App\Models\Course;
 use App\Services\CourseService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
@@ -25,14 +26,12 @@ class CourseController extends Controller
     {
         $data = [];
         try {
-
             $data = $this->courseService->teacher_courses($teacher_id);
             return Response::Success($data['courses'],$data['message'],$data['code']);
 
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
     }
 
@@ -54,10 +53,10 @@ class CourseController extends Controller
     {
         $data = [];
         try {
-
             $data = $this->courseService->show_courses($subject_id);
-            return Response::Success($data['courses'],$data['message'],$data['code']);
-
+            $courses = Course::query()
+                ->where('subject_id' , $subject_id)->get();
+                return Response::Success($data['courses'] , $data['message'] , $data['code']);
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);

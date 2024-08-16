@@ -22,7 +22,7 @@ class WalletOperationAction
         $data['name'] = $user->full_name;
         $data['user_id'] = $user->id;
         Notification::send($admin, new SendAskDepositMail($data));
-        $message = 'sending message successfully';
+        $message = __('strings.sending message successfully');
         $code = 200 ;
 
         return [
@@ -59,16 +59,16 @@ class WalletOperationAction
                 Notification::send($user, new SendReplayDepositMail($amount));
 
                 // رسالة النجاح
-                $message = 'Funds deposited successfully';
+                $message = __('strings.Funds deposited successfully');
                 $code = 200;
             } else {
                 // رسالة الخطأ عند عدم العثور على المستخدم
-                $message = 'This user not found';
+                $message = __('strings.This user not found');
                 $code = 404;
             }
         } else {
             // رسالة الخطأ عند عدم امتلاك الأذونات أو رابط غير صالح
-            $message = 'You do not have permission to deposit money or invalid link';
+            $message = __('strings.You do not have permission to deposit money or invalid link');
             $code = 403;
         }
 
@@ -87,7 +87,7 @@ class WalletOperationAction
         $id = Auth::id();
         $user = User::query()->where('id' , $id)->first();
         if ($user->wallet < $request->amount) {
-            $message = 'you can not withdraw money more than you have';
+            $message = __('strings.you can not withdraw money more than you have');
             $code = 401;
         }else {
 
@@ -101,7 +101,7 @@ class WalletOperationAction
                 'amount' => $request->amount,
             ]);
 
-            $message = 'Withdrawal completed successfully';
+            $message = __('strings.Withdrawal completed successfully');
             $code = 200;
 
         }
@@ -120,7 +120,7 @@ class WalletOperationAction
         $user = User::query()->where('id' , $id)->first();
         return [
             'data' => $user->wallet,
-            'message' => 'Getting your wallet successfully',
+            'message' => __('strings.Getting your wallet successfully'),
             'code' => 200,
         ];
     }
@@ -133,7 +133,7 @@ class WalletOperationAction
 
         return [
             'data' => $transactions,
-            'message' => 'Getting all your transactions successfully',
+            'message' => __('strings.Getting all your transactions successfully'),
             'code' => 200,
         ];
     }

@@ -116,37 +116,28 @@ class UserOperationController extends Controller
 
     }
 
-    //api for updation profile
+    //api for update profile
     public function update_profile(UpdateProfileRequest $request) : JsonResponse
     {
         $data = [];
         try {
             $data = $this->userOperationService->update_profile($request->validated());
             return Response::Success($data['user'],$data['message'],$data['code']);
-
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
-
     }
-
-    //api for updation profile
+    //api for update profile
     public function show_profile() : JsonResponse
     {
         $data = [];
         try {
             $data = $this->userOperationService->show_profile();
             return Response::Success($data['user'],$data['message'],$data['code']);
-
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
-
     }
-
-
 }

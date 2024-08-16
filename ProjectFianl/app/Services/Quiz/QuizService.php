@@ -42,30 +42,30 @@ class QuizService
                                     'mark' => 0,
                                 ]);
 
-                                $message = 'Adding quiz successfully';
+                                $message = __('strings.Adding quiz successfully');
                                 $code = 200;
 
                     } else {
 
-                        $message = 'There is quiz in this course already';
+                        $message = __('strings.There is quiz in this course already');
                         $code = 403;
 
                     }
                 }else{
 
-                    $message = 'Course does not belongs to you to add quiz on it';
+                    $message = __('strings.Course does not belongs to you to add quiz on it');
                     $code = 401;
 
                 }
             } else {
 
-                $message = 'You do not have permission to add quiz';
+                $message = __('strings.You do not have permission to add quiz');
                 $code = 401;
 
             }
         }else{
 
-            $message = 'Course not found';
+            $message = __('strings.Course not found');
             $code = 404;
 
         }
@@ -87,24 +87,24 @@ class QuizService
                 if(!is_null($quizUser) && $quizUser->user_id == Auth::id()) {
 
                         $quiz->delete();
-                        $message = 'Deleting quiz successfully';
+                        $message = __('strings.Deleting quiz successfully');
                         $code = 200;
 
                 } else {
                     $quiz =[];
-                    $message = 'This quiz does not belongs to you';
+                    $message = __('strings.This quiz does not belongs to you');
                     $code = 403;
 
                 }
             }else{
                 $quiz =[];
-                $message = 'You do not have permission to delete quiz';
+                $message = __('strings.You do not have permission to delete quiz');
                  $code = 401;
 
                 }
         } else {
             $quiz =[];
-            $message = 'Not found in data';
+            $message = __('strings.Not found in data');
             $code = 404;
         }
 
@@ -125,7 +125,7 @@ class QuizService
                 if (Auth::user()->hasRole('admin')) {
 
                     $quizzes = Quiz::query()->get();
-                    $message = 'Getting all quizzes in data successfully';
+                    $message = __('strings.Getting all quizzes in data successfully');
                     $code = 200;
 
                 } if (Auth::user()->hasRole('teacher')) {
@@ -139,26 +139,26 @@ class QuizService
 
                         }
                         $quizzes = $quizzes;
-                        $message = 'Getting all your quizzes successfully';
+                        $message = __('strings.Getting all your quizzes successfully');
                         $code = 200;
 
 
                     } else {
                         $quizzes =[];
-                        $message = 'You do not have any quiz';
+                        $message = __('strings.You do not have any quiz');
                         $code = 404;
                     }
                 }
 
         }else {
             $quizzes =[];
-                $message = 'You do not have any permission to show all quizzes';
+                $message = __('strings.You do not have any permission to show all quizzes');
             $code = 401;
 
         }
         }else{
             $quizzes = [];
-            $message = 'Not found any quiz';
+            $message = __('strings.Not found any quiz');
             $code = 404;
         }
 
@@ -177,7 +177,7 @@ class QuizService
                 if (Auth::user()->hasRole('admin')) {
 
                     $quizzes = Quiz::query()->with('questions.answers')->get();
-                    $message = 'Getting all quizzes in data successfully';
+                    $message = __('strings.Getting all quizzes in data successfully');
                     $code = 200;
 
                 } if (Auth::user()->hasRole('teacher')) {
@@ -192,13 +192,13 @@ class QuizService
 
 
                         $quizzes = $quizzes;
-                        $message = 'Getting all your quizzes successfully';
+                        $message = __('strings.Getting all your quizzes successfully');
                         $code = 200;
 
 
                     } else {
                         $quizzes =[];
-                        $message = 'You do not have any quiz';
+                        $message = __('strings.You do not have any quiz');
                         $code = 404;
                     }
                 }else {
@@ -213,13 +213,13 @@ class QuizService
 
 
                     $quizzes = $quizzes;
-                    $message = 'Getting all your quizzes successfully';
+                    $message = __('strings.Getting all your quizzes successfully');
                     $code = 200;
 
 
                 } else {
                     $quizzes =[];
-                    $message = 'You do not have any quiz';
+                    $message = __('strings.You do not have any quiz');
                     $code = 404;
                 }
             }
@@ -227,7 +227,7 @@ class QuizService
 
         }else{
             $quizzes = [];
-            $message = 'Not found any quiz';
+            $message = __('strings.Not found any quiz');
             $code = 404;
         }
 
@@ -255,11 +255,11 @@ class QuizService
                  ->first();
              if(!is_null($found)){
                  $quiz = Quiz::query()->where('course_id',$course_id)->with('questions.answers')->first();
-                 $message = 'Getting quiz successfully';
+                 $message = __('strings.Getting quiz successfully');
                  $code = 200;
              }else{
                  $quiz =[];
-                 $message = 'This course belongs to another teacher';
+                 $message = __('strings.This course belongs to another teacher');
                  $code = 403;
              }
 
@@ -283,17 +283,17 @@ class QuizService
 
                  if ($videosWatchedCount > (0.80 * $countVideo)){
                      $quiz = Quiz::query()->where('course_id',$course_id)->with('questions.answers')->first();
-                     $message = 'Getting quiz successfully';
+                     $message = __('strings.Getting quiz successfully');
                      $code = 200;
                  }else{
                      $quiz =[];
-                     $message = 'You need to watch at least 80% from this course';
+                     $message = __('strings.You need to watch at least 80% from this course');
                      $code = 403;
                  }
 
              }else{
                  $quiz =[];
-                 $message = 'You need to buy this course first';
+                 $message = __('strings.You need to buy this course first');
                  $code = 403;
              }
 
@@ -301,7 +301,7 @@ class QuizService
 
      }else{
          $quiz =[];
-         $message = 'There is no quiz for this course currently';
+         $message = __('strings.There is no quiz for this course currently');
          $code = 404;
      }
         return [
@@ -386,21 +386,21 @@ class QuizService
                         ]);
 
                         $data = [];
-                        $data['message'] = 'Excellent. You got a perfect mark on this test. You got coupons worth ten percent of the price of this course. These coupons have been added to your balance.';
+                        $data['message'] = __('strings.Excellent. You got a perfect mark on this test. You got coupons worth ten percent of the price of this course. These coupons have been added to your balance.');
                         $data['mark'] = $mark;
                         $data['name'] = $user->full_name;
                         $data['courseName'] = $course->name;
                         Mail::to($userEmail)->send(new certificate($data));
                     } else if ($mark == 9 || $mark == 8 ||$mark == 7) {
                         $data = [];
-                        $data['message'] = 'Very Good. You got a good mark on this test.';
+                        $data['message'] = __('strings.Very Good. You got a good mark on this test.');
                         $data['mark'] = $mark;
                         $data['name'] = $user->full_name;
                         $data['courseName'] = $course->name;
                         Mail::to($userEmail)->send(new certificate($data));
                     }else{
                         $data = [];
-                        $data['message'] = 'Sorry, you failed in this test';
+                        $data['message'] = __('strings.Sorry, you failed in this test');
                         $data['mark'] = $mark;
                         $data['name'] = $user->full_name;
                         $data['courseName'] = $course->name;
@@ -410,21 +410,21 @@ class QuizService
                     $data = [];
                     $data['mark'] = $mark . ' From 10';
                     $data['answers'] = $answersStudent;
-                    $message = 'Your mark';
+                    $message = __('strings.Your mark');
                     $code = 200;
                 } else {
                     $data = [];
-                    $message = 'You have already solved this quiz';
+                    $message = __('strings.You have already solved this quiz');
                     $code = 403;
                 }
             } else {
                 $data = [];
-                $message = 'This test is not for you';
+                $message = __('strings.This test is not for you');
                 $code = 403;
             }
         } else {
             $data = [];
-            $message = 'This quiz was not found';
+            $message = __('strings.This quiz was not found');
             $code = 404;
         }
 

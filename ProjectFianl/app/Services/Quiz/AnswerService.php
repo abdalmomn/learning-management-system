@@ -30,19 +30,19 @@ class AnswerService
                             'role' => $request['role'] ?? 0,
                         ]);
 
-                        $message = 'Adding answer successfully';
+                        $message = __('strings.Adding answer successfully');
                         $code = 200;
 
 
                     } else {
 
-                        $message = 'This question has already four answer';
+                        $message = __('strings.This question has already four answer');
                         $code = 403;
 
                     }
                 }else{
 
-                    $message = 'question does not belongs to you to add answer on it';
+                    $message = __('strings.question does not belongs to you to add answer on it');
                     $code = 401;
 
                 }
@@ -50,12 +50,12 @@ class AnswerService
 
             } else {
 
-                $message = 'You do not have permission to add answer';
+                $message = __('strings.You do not have permission to add answer');
                 $code = 401;
 
             }
         } else {
-            $message = 'This question not found';
+            $message = __('strings.This question not found');
             $code = 404;
         }
 
@@ -79,13 +79,13 @@ class AnswerService
                 if (!is_null($userId) && $userId->user_id == Auth::id()) {
 
                         $answer->delete();
-                        $message = 'Deleting answer successfully';
+                        $message = __('strings.Deleting answer successfully');
                         $code = 200;
 
                 }else{
 
                     $answer =[];
-                    $message = 'question does not belongs to you to delete answers';
+                    $message = __('strings.question does not belongs to you to delete answers');
                     $code = 403;
 
                 }
@@ -94,13 +94,13 @@ class AnswerService
             } else {
 
                 $answer =[];
-                $message = 'You do not have permission to delete answer';
+                $message = __('strings.You do not have permission to delete answer');
                 $code = 401;
 
             }
         } else {
             $answer =[];
-            $message = 'This answer not found';
+            $message = __('strings.This answer not found');
             $code = 404;
 
         }
@@ -128,13 +128,13 @@ class AnswerService
                         'choice' => $request['choice'] ??$answer['choice'],
                         'role' => $request['role'] ?? $answer['role'],
                     ]);
-                    $message = 'Updating answer successfully';
+                    $message = __('strings.Updating answer successfully');
                     $code = 200;
 
                 }else{
 
                     $answer =[];
-                    $message = 'question does not belongs to you to update answers';
+                    $message = __('strings.question does not belongs to you to update answers');
                     $code = 403;
 
                 }
@@ -143,13 +143,13 @@ class AnswerService
             } else {
 
                 $answer =[];
-                $message = 'You do not have permission to update answer';
+                $message = __('strings.You do not have permission to update answer');
                 $code = 401;
 
             }
         } else {
             $answer =[];
-            $message = 'This answer not found';
+            $message = __('strings.This answer not found');
             $code = 404;
 
         }
@@ -172,7 +172,7 @@ class AnswerService
 
                     if (Auth::user()->hasRole('admin')) {
 
-                        $message = 'Getting all answers in this question successfully';
+                        $message = __('strings.Getting all answers in this question successfully');
                         $code = 200;
 
                     }
@@ -186,29 +186,29 @@ class AnswerService
                             ->where('user_id',Auth::id())
                             ->first();
                         if ($found) {
-                            $message = 'Getting all answers in this question successfully';
+                            $message = __('strings.Getting all answers in this question successfully');
                             $code = 200;
                         } else {
                             $answer = [];
-                            $message = 'This question belongs to another teacher';
+                            $message = __('strings.This question belongs to another teacher');
                             $code = 404;
                         }
                     }
 
                 } else {
                     $answer = [];
-                    $message = 'You do not have any permission to show answers for this question';
+                    $message = __('strings.You do not have any permission to show answers for this question');
                     $code = 401;
 
                 }
             } else {
                 $answer = [];
-                $message = 'Not found any answer in this question';
+                $message = __('strings.Not found any answer in this question');
                 $code = 404;
             }
         }else{
             $answer = [];
-            $message = 'This question not found';
+            $message = __('strings.This question not found');
             $code = 404;
         }
 

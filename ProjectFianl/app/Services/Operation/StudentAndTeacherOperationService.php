@@ -22,7 +22,7 @@ class StudentAndTeacherOperationService
             ->take(5)
             ->get();
 
-        $message = 'getting The most baying courses';
+        $message = __('strings.getting The most baying courses');
         $code = 200;
         return [
             'courses' => $courses,
@@ -45,7 +45,7 @@ class StudentAndTeacherOperationService
 
         Notification::send($admin, new SendReportAboutStudentMail($data));
 
-        $message = 'Sending report successfully';
+        $message = __('strings.Sending report successfully');
         $code = 200;
         return [
             'data' => $data,
@@ -69,7 +69,7 @@ class StudentAndTeacherOperationService
 
         Notification::send($admin, new SendReportAboutTeacherMail($data));
 
-        $message = 'Sending report successfully';
+        $message = __('strings.Sending report successfully');
         $code = 200;
         return [
             'data' => $data,
@@ -87,7 +87,7 @@ class StudentAndTeacherOperationService
             $code = 403;
         }else{
             $data = [];
-            $message = 'You do not have permission';
+            $message = __('strings.You do not have permission');
             $code = 403;
         }
 

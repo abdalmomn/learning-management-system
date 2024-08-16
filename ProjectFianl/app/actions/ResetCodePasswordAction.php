@@ -26,7 +26,7 @@ class ResetCodePasswordAction
         Mail::to($request['email'])->send(new SendCodeResetPassword($codeData['code']));
         return [
             'data' => $codeData,
-            'message' => 'send the new code to the input email',
+            'message' => __('strings.send the new code to the input email'),
             'code' => 200,
         ];
     }
@@ -39,7 +39,7 @@ class ResetCodePasswordAction
             $passwordReset->delete();
             return [
                 'data' => [],
-                'message' => 'This code is expired',
+                'message' => __('strings.This code is expired'),
                 'code' => 422,
             ];
 
@@ -47,7 +47,7 @@ class ResetCodePasswordAction
 
         return [
             'data' => $passwordReset['code'],
-            'message' => 'The code is correct',
+            'message' => __('strings.The code is correct'),
             'code' => 200,
         ];
     }
@@ -60,7 +60,7 @@ class ResetCodePasswordAction
             $passwordReset->delete();
             return [
                 'data' => [],
-                'message' => 'This code is expired',
+                'message' => __('strings.This code is expired'),
                 'code' => 422,
             ];
         }
@@ -75,7 +75,7 @@ class ResetCodePasswordAction
 
         return [
             'data' => $user,
-            'message' => 'Password has been successfully reset',
+            'message' => __('strings.Password has been successfully reset'),
             'code' => 200,
         ];
     }

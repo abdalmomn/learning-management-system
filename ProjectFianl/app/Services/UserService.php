@@ -52,7 +52,7 @@ class UserService
             $user = User::query()->find($user['id']);
             $user = $this->appendRolesAndPermissions($user);
             $user['token'] = $user->createToken("token")->plainTextToken;
-            $message = 'Your created successfully';
+            $message = __('strings.your created successfully');
 
             //sending welcome email
 
@@ -65,7 +65,7 @@ class UserService
         }
         return [
             'user' => $user ?? [],
-            'message' => $message ?? 'Your Request for processing has been registered,please wait for response the admin',
+            'message' => $message ?? __('strings.Your Request for processing has been registered,please wait for response the admin'),
         ];
     }
     //login process for student or teacher
@@ -77,7 +77,7 @@ class UserService
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
                 $user = $this->appendRolesAndPermissions($user);
                 $user['token']=$user->createToken("token")->plainTextToken;
-                $message='Your logged successfully';
+                $message= __('strings.Your logged successfully');
                 $code=200;
 
                 //sending welcome email
@@ -89,12 +89,12 @@ class UserService
             }else{
 
                 $user = [];
-                $message='User email dose not match with password';
+                $message= __('strings.User email dose not match with password');
                 $code=401;
             }
 
         }else{
-            $message='User not found in data you need to register first';
+            $message= __('strings.User not found in data you need to register first');
             $code=404;
         }
         return [
@@ -110,12 +110,12 @@ class UserService
     {
         $user=Auth::user();
         if(!is_null($user)){
-            Auth::user()->currentAccessToken()->delete();
-            $message='Logged Out successfully';
+            auth()->user()->tokens()->delete();
+            $message= __('strings.Logged Out successfully');
             $code=200;
 
         }else{
-            $message='Invalid Token';
+            $message= __('strings.Invalid Token');
             $code=404;
         }
         return [
@@ -139,7 +139,7 @@ class UserService
                 ]);
 
                 $user = $this->Make_teacher($request);
-                $message = 'Accept this teacher in your app';
+                $message = __('strings.Accept this teacher in your app');
                 $code = 200;
 
                 $data = [];
@@ -149,14 +149,14 @@ class UserService
                 Event::dispatch(new WelcomeEvent($welcome,$data));
             } else {
 
-                $message = 'you dont have permission to accept teacher';
+                $message = __('strings.you dont have permission to accept teacher');
                 $code = 403;
                 $user = [];
 
             }
         } else {
 
-            $message = 'This teacher already register';
+            $message = __('strings.This teacher already registered');
             $code = 403;
             $user = [];
 
@@ -176,7 +176,7 @@ class UserService
         if (($admin)->hasRole('admin')){
 
             $user = $this->Make_teacher($request);
-            $message = 'Accept this teacher in your app';
+            $message = __('strings.Accept this teacher in your app');
             $code = 200;
 
             $welcome= 'welcome in our app ypu have been add by the admin';
@@ -188,7 +188,7 @@ class UserService
 
         }else{
 
-            $message = 'you dont have permission to accept teacher';
+            $message = __('strings.you dont have permission to accept teacher');
             $code = 403;
             $user = [];
         }
@@ -223,7 +223,7 @@ class UserService
         $user = User::query()->find($user['id']);
         $user = $this->appendRolesAndPermissions($user);
         $user['token'] = $user->createToken("token")->plainTextToken;
-        $message = 'Teacher account created successfully';
+        $message = __('strings.Teacher account created successfully');
         $code = 200;
 
 

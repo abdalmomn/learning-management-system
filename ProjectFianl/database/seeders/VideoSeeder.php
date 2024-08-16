@@ -20,224 +20,224 @@ class VideoSeeder extends Seeder
                 'course_id' =>  1,
                 'title' => 'hay',
                  'description' => 'hay',
-                 'url' => 'url',
+                 'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  1,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  1,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  1,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  1,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  1,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  1,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  1,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  1,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  1,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' => 2,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  3,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  4,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  4,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
@@ -559,161 +559,161 @@ class VideoSeeder extends Seeder
                 'course_id' =>  8,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  8,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  8,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  9,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
             [
                 'course_id' =>  10,
                 'title' => 'hay',
                 'description' => 'hay',
-                'url' => 'url',
+                'url' => '/storage/videos/YL6BDhPOKMBvEVbfBftsSyfSOdPr71QpfDBzGuqx.mp3',
 
             ],
         ];

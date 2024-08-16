@@ -21,11 +21,11 @@ class UserOperationService
 
             if (!$students->isEmpty()) {
                 $data = $students;
-                $message = 'Getting all students';
+                $message = __('strings.Getting all students');
                 $code = 200;
             } else {
                 $data = []; // تأكد من أن $data معرفة دائماً
-                $message = 'Not found';
+                $message = __('strings.Not found');
                 $code = 404;
             }
         } else if (Auth::user()->hasRole('teacher')) {
@@ -56,21 +56,21 @@ class UserOperationService
 
                 if (!$students->isEmpty()) {
                     $data = $students;
-                    $message = 'Getting all students';
+                    $message = __('strings.Getting all students');
                     $code = 200;
                 } else {
                     $data = []; // تأكد من أن $data معرفة دائماً
-                    $message = 'No students found in your courses';
+                    $message = __('strings.No students found in your courses');
                     $code = 404;
                 }
             } else {
                 $data = []; // تأكد من أن $data معرفة دائماً
-                $message = 'Not found any course belongs to you';
+                $message = __('strings.Not found any course belongs to you');
                 $code = 404;
             }
         } else {
             $data = []; // تأكد من أن $data معرفة دائماً
-            $message = 'You do not have permission';
+            $message = __('strings.You do not have permission');
             $code = 403;
         }
 
@@ -100,7 +100,7 @@ class UserOperationService
                     ->flatten(); // اجعل القائمة مسطحة لتجنب القوائم المتداخلة
 
                 $data = $students;
-                $message = 'Students for this course';
+                $message = __('strings.Students for this course');
                 $code = 200;
             } else if (Auth::user()->hasRole('teacher')) {
                 // في حالة كان المستخدم معلمًا، تحقق إذا كان المعلم مسجل في الكورس ومن ثم احضر الطلاب المدفوعين
@@ -120,21 +120,21 @@ class UserOperationService
                         ->flatten(); // اجعل القائمة مسطحة لتجنب القوائم المتداخلة
 
                     $data = $students;
-                    $message = 'Students for this course';
+                    $message = __('strings.Students for this course');
                     $code = 200;
                 } else {
                     $data = [];
-                    $message = 'You are not associated with this course';
+                    $message = __('strings.You are not associated with this course');
                     $code = 403;
                 }
             } else {
                 $data = [];
-                $message = 'You do not have any permission';
+                $message = __('strings.You do not have any permission');
                 $code = 403;
             }
         } else {
             $data = [];
-            $message = 'This course not found in data';
+            $message = __('strings.This course not found in data');
             $code = 404;
         }
 
@@ -153,18 +153,18 @@ class UserOperationService
                 if(!is_null($teachers)){
 
                     $data = $teachers;
-                    $message = 'getting all teachers';
+                    $message = __('strings.getting all teachers');
                     $code = 200;
 
                 }else{
 
-                    $message = 'Not found';
+                    $message = __('strings.Not found');
                     $code = 404;
 
                 }
             }else{
 
-                $message = 'You do not have permission';
+                $message = __('strings.You do not have permission');
                 $code = 403;
 
             }
@@ -196,16 +196,16 @@ class UserOperationService
                     ->unique('id'); // إزالة التكرار بناءً على معرف المستخدم
 
                 $data = $teachers;
-                $message = 'Teachers for this subject';
+                $message = __('strings.Teachers for this subject');
                 $code = 200;
             } else {
                 $data = [];
-                $message = 'You do not have any permission';
+                $message = __('strings.You do not have any permission');
                 $code = 403;
             }
         } else {
             $data = [];
-            $message = 'No courses found for this subject';
+            $message = __('strings.No courses found for this subject');
             $code = 404;
         }
 
@@ -229,27 +229,27 @@ class UserOperationService
 
                     $data = $student;
                     $student->delete();
-                    $message = 'Deleted successfully';
+                    $message = __('strings.Deleted successfully');
                     $code = 200;
 
                 } else {
 
                     $data = [];
-                    $message = 'This account belongs to teacher not student';
+                    $message = __('strings.This account belongs to teacher not student');
                     $code = 403;
 
                 }
             }else{
 
                     $data = [];
-                $message = 'You do not have permission to delete this account';
+                $message = __('strings.You do not have permission to delete this account');
                     $code = 403;
 
                 }
 
         }else{
             $data = [];
-            $message = 'Not found ';
+            $message = __('strings.Not found');
             $code =404;
 
         }
@@ -268,40 +268,34 @@ class UserOperationService
         if(!is_null($teacher)){
             if(Auth::user()->hasRole('admin' )){
                 if ($teacher->type == 'teacher' ){
-
                 $data = $teacher;
                 $teacher->delete();
-                $message = 'Deleted successfully';
+                $message = __('strings.Deleted successfully');
                 $code = 200;
                 } else {
 
                     $data = [];
-                    $message = 'This account belongs to teacher not student';
+                    $message = __('strings.This account belongs to teacher not student');
                     $code = 403;
 
                 }
             }else{
 
                 $data = [];
-                $message = 'You do not have permission to delete this account';
+                $message = __('strings.You do not have permission to delete this account');
                 $code = 403;
-
             }
-
         }else{
             $data = [];
-            $message = 'Not found ';
+            $message = __('strings.Not found');
             $code =404;
-
         }
         return [
             'user' => $data,
             'message' => $message,
             'code' => $code
         ];
-
     }
-
     //update profile for user (student and teacher)
     public function update_profile($request) : array
     {
@@ -315,41 +309,31 @@ class UserOperationService
                     'image' => $request['image'] ?? $user['image'],
             ]);
             $user=User::query()->find(Auth::id());
-            $message = 'Updated profile successfully';
+            $message = __('strings.Updated profile successfully');
             $code=200;
 
         } else {
 
              $user = [];
-             $message = 'Updating profile not for admin';
+             $message = __('strings.Updating profile not for admin');
              $code=403;
-
         }
-
         return [
             'user' => $user,
             'message' => $message,
             'code' => $code,
         ];
     }
-
     //show profile for user (student and teacher)
     public function show_profile() : array
     {
             $user=User::query()->where('id',Auth::id())->first();
-            $message = 'Your profile';
+            $message = __('strings.Your profile');
             $code=200;
-
         return [
             'user' => $user,
             'message' => $message,
             'code' => $code,
         ];
     }
-
-
-
-
-
-
 }

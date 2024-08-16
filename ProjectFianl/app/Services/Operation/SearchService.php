@@ -20,11 +20,11 @@ class SearchService
                 ->where('name', 'like', '%' . $query . '%')
                 ->first();
 
-            $message = 'Getting course successfully' ;
+            $message = __('strings.Getting course successfully') ;
             $code = 200;
         }else{
             $course = [];
-            $message = 'subject not found';
+            $message = __('strings.subject not found');
             $code = 404;
 
         }
@@ -47,12 +47,12 @@ class SearchService
                 ->where('id', 'like', $query . '%')
                 ->first();
 
-            $message = 'Getting video successfully';
+            $message = __('strings.Getting video successfully');
             $code = 200;
 
         }else{
             $video = [];
-            $message = 'course not found';
+            $message = __('strings.course not found');
             $code = 404;
         }
 

@@ -27,12 +27,13 @@ class AddVideoRequest extends FormRequest
         return [
             'course_id' => [],
             'title' => 'required|string|min:5',
-            'url' => 'required|file',
+            'url' => 'required|file', // Only accept MP4 files
             'duration' => [],
             'user_id' => [],
             'video_id' => [],
         ];
     }
+
     protected function failedValidation(Validator $validator)
     {
         throw new ValidationException($validator, Response::Validation([],$validator->errors()));
