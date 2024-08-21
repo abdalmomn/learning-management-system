@@ -70,7 +70,9 @@ class CourseController extends Controller
         $data = [];
         try {
             $imagePath = $request->file('poster')->store('images' , 'public');
-            $imageUrl = Storage::url($imagePath);
+//            $imageUrl = Storage::url($imagePath);
+            $imageUrl = Storage::disk('public')->path($imagePath);
+
             $validatedData = $request->validated();
             $validatedData['poster'] = $imageUrl;
             $data = $this->courseService->create_course($validatedData);
@@ -88,7 +90,7 @@ class CourseController extends Controller
         $data = [];
         try {
             $imagePath = $request->file('poster')->store('images' , 'public');
-            $imageUrl = Storage::url($imagePath);
+            $imageUrl = Storage::disk('public')->path($imagePath);
             $validatedData = $request->validated();
             $validatedData['poster'] = $imageUrl;
             $data = $this->courseService->update_course($validatedData,$id);

@@ -29,32 +29,42 @@ class VideoController extends Controller
 
     public function create_video(AddVideoRequest $request, $course_id): JsonResponse
     {
+        // Initialize the video array for use in the return statement
         $video = [];
-        try {
-            if (Auth::user()->hasRole('teacher') || Auth::user()->hasRole('admin')) {
-                // Store the video in 'public/videos'
-                $videoPath = $request->file('url')->store('videos', 'public');
-                $videoUrl = Storage::url($videoPath);
 
-                // Validate and store video data
+        try {
+            // Check if the authenticated user has the correct role
+            if (Auth::user()->hasRole('teacher') || Auth::user()->hasRole('admin')) {
+
+                // Store the video in the 'public/videos' directory
+                $videoPath = $request->file('url')->store('videos', 'public');
+                $videoUrl = Storage::disk('public')->path($videoPath);
+
+                // Validate the request data
                 $validatedData = $request->validated();
+
+                // Assign the generated URL to the validated data array
                 $validatedData['url'] = $videoUrl;
 
-                // Fetch video duration using the service
+                // Fetch video duration using the service and assign it
                 $validatedData['duration'] = $this->videoService->getVideoDuration($request->file('url'));
 
-                // Add video to the database
+                // Add the video to the database using the service
                 $video = $this->videoService->addVideos($validatedData, $course_id);
 
+                // Return a successful response
                 return Response::Success($video['video'], $video['message']);
             } else {
+                // Return a 403 unauthorized response if the user lacks the proper role
                 return response()->json(['message' => 'unauthorized'], 403);
             }
         } catch (Throwable $th) {
+            // Capture and return any exception message that occurs
             $message = $th->getMessage();
             return Response::Error([], $message);
         }
     }
+
 
 
     public function update_video(UpdateVideoRequest $request ,$course_id, $video_id):JsonResponse
@@ -63,7 +73,7 @@ class VideoController extends Controller
         try {
             if (Auth::user()->hasRole('teacher')){
                 $videoPath = $request->file('url')->store('videos', 'public');
-                $videoUrl = Storage::url($videoPath);
+                $videoUrl = Storage::disk('public')->path($videoPath);
 
                 $validatedData = $request->validated();
                 $validatedData['url'] = $videoPath;

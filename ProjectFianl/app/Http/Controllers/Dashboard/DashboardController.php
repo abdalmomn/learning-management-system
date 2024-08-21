@@ -179,7 +179,7 @@ class DashboardController extends Controller
         $data = [];
         try {
             $imagePath = $request->file('poster')->store('images', 'public');
-            $imageUrl = Storage::url($imagePath);
+            $imageUrl = Storage::disk('public')->path($imagePath);
             $validatedData = $request->validated();
             $validatedData['poster'] = $imageUrl;
             $data = $this->dashboardService->create_course($validatedData);
@@ -196,7 +196,7 @@ class DashboardController extends Controller
         $data = [];
         try {
             $imagePath = $request->file('poster')->store('images', 'public');
-            $imageUrl = Storage::url($imagePath);
+            $imageUrl = Storage::disk('public')->path($imagePath);
             $validatedData = $request->validated();
             $validatedData['poster'] = $imageUrl;
             $data = $this->dashboardService->update_course($validatedData, $id);
@@ -241,7 +241,7 @@ class DashboardController extends Controller
                 $validatedData['duration'] = $this->dashboardService->getVideoDuration($request->file('url'));
 
                 // Add video to the database
-                $video = $this->dashboardService->addVideos($validatedData, $course_id);
+                $video = $this->dashboardService->add_Video($validatedData, $course_id);
 
                 return Response::Success($video['video'], $video['message']);
             } else {

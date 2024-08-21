@@ -31,20 +31,21 @@ class AuthController extends Controller
     {
         $data = [];
         try {
+            $imagePath = $request->file('image')->store('images' , 'public');
+            //$imageUrl = Storage::url($imagePath);
+            $imageUrl = Storage::disk('public')->path($imagePath);
             $validatedData = $request->validated();
+            $validatedData['image'] = $imageUrl;
             $data = $this->userService->register($validatedData);
             return Response::Success($data['user'],$data['message']);
-
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
-
     }
 
     //api for login process
-    public function login(UserLoginRequest $request) : JsonResponse
+    public function login(UserLoginRequest $request):JsonResponse
     {
         $data = [];
         try {
@@ -54,9 +55,7 @@ class AuthController extends Controller
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
-
     }
 
     //api for logout process
@@ -66,13 +65,10 @@ class AuthController extends Controller
         try {
             $data = $this->userService->logout();
             return Response::Success($data['user'],$data['message'],$data['code']);
-
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
-
     }
 
     //api for delete the last code for this user and send a new one
@@ -86,9 +82,7 @@ class AuthController extends Controller
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
-
     }
 
     //api for delete the last code for this user and send a new one
@@ -102,9 +96,7 @@ class AuthController extends Controller
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
-
     }
 
     //api to take the code with the new password
@@ -118,9 +110,7 @@ class AuthController extends Controller
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
-
     }
 
     //api to Accept teacher in our app and make a new account for him and sending reapply by email
@@ -129,18 +119,16 @@ class AuthController extends Controller
     {
         $data = [];
         try {
-
             $imagePath = $request->file('image')->store('images' , 'public');
-            $imageUrl = Storage::url($imagePath);
+            //$imageUrl = Storage::url($imagePath);
+            $imageUrl = Storage::disk('public')->path($imagePath);
             $validatedData = $request->validated();
             $validatedData['image'] = $imageUrl;
             $data = $this->userService->Accept_teacher_coming_by_email($validatedData,$id);
             return Response::Success($data['user'],$data['message'],$data['code']);
-
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
     }
 
@@ -149,21 +137,15 @@ class AuthController extends Controller
     {
         $data = [];
         try {
-
             $imagePath = $request->file('image')->store('images' , 'public');
-            $imageUrl = Storage::url($imagePath);
+            $imageUrl = Storage::disk('public')->path($imagePath);
             $validatedData = $request->validated();
             $validatedData['image'] = $imageUrl;
             $data = $this->userService->admin_adding_new_teacher($validatedData);
             return Response::Success($data['user'],$data['message'],$data['code']);
-
         }catch (Throwable $th){
             $message=$th->getMessage();
             return Response::Error($data,$message);
-
         }
     }
-
-
-
 }

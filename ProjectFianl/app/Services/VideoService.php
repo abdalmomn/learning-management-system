@@ -21,8 +21,10 @@ class VideoService
         // Move the file to a permanent storage location
         $videoPath = $videoFile->storeAs('videos', $videoFile->getClientOriginalName(), 'public');
 
+
+        $fullVideoPath = Storage::disk('public')->path($videoPath);
+
         // Get the full path of the stored file
-        $fullVideoPath = storage_path('app/public/videos/' . $videoFile->getClientOriginalName());
 
         // Ensure the file exists
         if (!file_exists($fullVideoPath)) {
@@ -46,7 +48,7 @@ class VideoService
 
     public function addVideos($request, $course_id): array
     {
-        if (Auth::user()->hasRole('teacher')) {
+        if (Auth::user()->hasRole('teacher') || Auth::user()->hasRole('admin')) {
             // Create the video record
             $video = Video::create([
                 'course_id' => $course_id,
@@ -54,7 +56,6 @@ class VideoService
                 'url' => $request['url'],
                 'duration' => $request['duration'],
             ]);
-
             // Merge video with teacher
             $user_video = User_video_pivot::create([
                 'user_id' => Auth::id(),
@@ -308,7 +309,9 @@ class VideoService
                 }
 
                 // Assuming the video has a 'path' or 'url' attribute
+
                 $videoUrl = asset('storage/videos/' . $video->url);
+
                 $message = __('strings.video information');
             } else {
                 $videoUrl = '';

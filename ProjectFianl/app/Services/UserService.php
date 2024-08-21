@@ -39,7 +39,7 @@ class UserService
                // 'birthday' => $request['birthday'],
                 //'address' => $request['address'],
                 'type' => 'student',
-                //'image'=> $request['image'],
+                'image'=> $request['image'],
             ]);
             $studentRole = Role::query()
                 ->where('name', 'student')
@@ -174,20 +174,15 @@ class UserService
     {
         $admin =User::query()->find(Auth::id());
         if (($admin)->hasRole('admin')){
-
             $user = $this->Make_teacher($request);
             $message = __('strings.Accept this teacher in your app');
             $code = 200;
-
             $welcome= 'welcome in our app ypu have been add by the admin';
             $data = [];
             $data['name'] = $request['full_name'];
             $data['email'] = $request['email'];
             Event::dispatch(new WelcomeEvent($welcome,$data));
-
-
         }else{
-
             $message = __('strings.you dont have permission to accept teacher');
             $code = 403;
             $user = [];
@@ -203,7 +198,6 @@ class UserService
     //make new row teacher after applying
     public function Make_teacher($request) : array
     {
-
         $user=User::query()->create([
             'full_name' => $request['full_name'],
             'email' => $request['email'],
@@ -219,18 +213,14 @@ class UserService
         $permissions = $teacherRole->permissions()->pluck('name')->toArray();
         $user->givePermissionTo($permissions);
         $user->load('roles', 'permissions');
-
         $user = User::query()->find($user['id']);
         $user = $this->appendRolesAndPermissions($user);
         $user['token'] = $user->createToken("token")->plainTextToken;
         $message = __('strings.Teacher account created successfully');
         $code = 200;
-
-
         $welcome= 'welcome in our app we are sorry for make you wait for responding';
         $data = $user->full_name;
         //Event::dispatch(new WelcomeEvent($welcome,$data));
-
         return [
             'user' => $user,
             'message' => $message,

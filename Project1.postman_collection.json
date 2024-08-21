@@ -32,7 +32,7 @@
 										},
 										{
 											"key": "email",
-											"value": "jehad@gmail.com",
+											"value": "jehad11213311@gmail.com",
 											"type": "text"
 										},
 										{
@@ -53,12 +53,14 @@
 										{
 											"key": "birthday",
 											"value": "2001-02-22",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "address",
 											"value": "doma",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "type",
@@ -68,8 +70,7 @@
 										{
 											"key": "image",
 											"type": "file",
-											"src": "/C:/Users/Lenovo/Desktop/تعليق توضيحي 2024-06-04 150352.png",
-											"disabled": true
+											"src": "/C:/Users/abdalmomn/Pictures/code.png"
 										}
 									]
 								},
@@ -1753,6 +1754,11 @@
 									{
 										"key": "Accept",
 										"value": "application/json"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -1760,7 +1766,7 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "s@example.com",
+											"value": "admin@example.com",
 											"type": "text"
 										},
 										{
@@ -16907,7 +16913,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "22|819SiemL5XXwSlnLa2aKeQ78YnQFFPJuRnSvnTcpb445bca2",
+											"value": "29|yJz3tjnGU1DygnKeZ4PG7ZJgvMoL62CG5Qq6To8N0218a701",
 											"type": "string"
 										}
 									]
@@ -16941,7 +16947,7 @@
 										{
 											"key": "poster",
 											"type": "file",
-											"src": "/C:/Users/abdalmomn/Pictures/Screenshots/IT.png"
+											"src": "/C:/Users/abdalmomn/Pictures/code.png"
 										},
 										{
 											"key": "requirements",
@@ -21996,7 +22002,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "22|819SiemL5XXwSlnLa2aKeQ78YnQFFPJuRnSvnTcpb445bca2",
+											"value": "29|yJz3tjnGU1DygnKeZ4PG7ZJgvMoL62CG5Qq6To8N0218a701",
 											"type": "string"
 										}
 									]
@@ -22031,12 +22037,12 @@
 										{
 											"key": "url",
 											"type": "file",
-											"src": "/C:/Users/abdalmomn/Documents/Adele_Set_Fire_to_the_Rain_WjqYTpE6Qdg_140.mp3"
+											"src": "/C:/Users/abdalmomn/Documents/video_2024-07-26_15-10-36.mp4"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/video/create_video/5",
+									"raw": "http://127.0.0.1:8000/api/video/create_video/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -22049,7 +22055,7 @@
 										"api",
 										"video",
 										"create_video",
-										"5"
+										"1"
 									]
 								}
 							},
@@ -22081,23 +22087,23 @@
 									"formdata": [
 										{
 											"key": "title",
-											"value": "video 222",
+											"value": "video 111",
 											"type": "text"
 										},
 										{
 											"key": "description",
-											"value": "description 222",
+											"value": "description 111",
 											"type": "text"
 										},
 										{
 											"key": "url",
 											"type": "file",
-											"src": "/C:/Users/abdalmomn/Documents/_David_Guetta_Hey_Mama_Dabin_Cha_cover__yW0tDixjvgs_298.mp4"
+											"src": "/C:/Users/abdalmomn/Documents/video_2024-07-26_15-10-36.mp4"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/video/update_video/16/21",
+									"raw": "http://127.0.0.1:8000/api/video/update_video/12/108",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -22110,8 +22116,8 @@
 										"api",
 										"video",
 										"update_video",
-										"16",
-										"21"
+										"12",
+										"108"
 									]
 								}
 							},
@@ -22181,7 +22187,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/video/show_all_videos/16",
+									"raw": "http://127.0.0.1:8000/api/video/show_all_videos/12",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -22194,7 +22200,7 @@
 										"api",
 										"video",
 										"show_all_videos",
-										"16"
+										"12"
 									]
 								}
 							},
@@ -22202,13 +22208,82 @@
 						},
 						{
 							"name": "show video",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"var template = `\r",
+											"<canvas id=\"myChart\" height=\"75\"></canvas>\r",
+											"\r",
+											"<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js\"></script> \r",
+											"\r",
+											"<script>\r",
+											"    var ctx = document.getElementById(\"myChart\");\r",
+											"\r",
+											"    var myChart = new Chart(ctx, {\r",
+											"        type: \"pie\",\r",
+											"        data: {\r",
+											"            labels: [\"Like\", \"Dislike\", \"View\"],\r",
+											"            datasets: [{\r",
+											"                data: [0, 0, 0],\r",
+											"                \r",
+											"                // Change these colours to customize the chart\r",
+											"                backgroundColor: [\"#003f5c\", \"#58508d\", \"#bc5090\"],\r",
+											"            }]\r",
+											"        },\r",
+											"        options: {\r",
+											"            title: {\r",
+											"                display: true,\r",
+											"                text: 'Video Engagement'\r",
+											"            }\r",
+											"        }\r",
+											"\r",
+											"    });\r",
+											"\r",
+											"    // Access the data passed to pm.visualizer.set() from the JavaScript\r",
+											"    // code of the Visualizer template\r",
+											"    pm.getData(function (err, value) {\r",
+											"        myChart.data.datasets[0].data = [value.response.data.like, value.response.data.dislike, value.response.data.view];\r",
+											"        myChart.update();\r",
+											"    });\r",
+											"\r",
+											"</script>`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    var res = pm.response.json();\r",
+											"    \r",
+											"    var visualizerData = {\r",
+											"        \r",
+											"        // Data takes an array of numbers\r",
+											"        data: {\r",
+											"            like: res.data.like,\r",
+											"            dislike: res.data.dislike,\r",
+											"            view: res.data.view\r",
+											"        }\r",
+											"    };\r",
+											"\r",
+											"    return {response: visualizerData};\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "3|6xiC4hKW4iUC7p1Vyze3ejpRg4mMOZlK59VRTgxSc23005dd",
+											"value": "38|PplhU2AdZgQrM98WokozjKZr0goP8wY5bA7fzol903aeb414",
 											"type": "string"
 										}
 									]
@@ -22222,7 +22297,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/video/show_video/16/24",
+									"raw": "http://127.0.0.1:8000/api/video/show_video/1/107",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -22235,8 +22310,1747 @@
 										"api",
 										"video",
 										"show_video",
-										"16",
-										"24"
+										"1",
+										"107"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "show all student",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "28|tSTHnU3laCWsntbZvHICbOQkKzTej0ft6jm8zsXta17ad546",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/all_students",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"all_students"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all teachers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/all_teachers",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"all_teachers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "22|NAcXFEKBjdDdAZsqBkxIdEksBKr4JvXuVgv9gDKLab68cbc8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/student_info/12",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"student_info",
+										"12"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update profile",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "26|25OwdGahlzPwYc1hFwY1ToK4T440SOWflN6CUSNFf23dfb28",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "full_name",
+											"value": "abdalmomndoah",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "0981239750",
+											"type": "text"
+										},
+										{
+											"key": "birthday",
+											"value": "23/4/2002",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "dara'a",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/abdalmomn/Pictures/code.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/update_profile/12",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"update_profile",
+										"12"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "22|okLnYZefFE8cUdrnFFz0XVE4OAkTWhTl5delQaMt315422d2",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/delete_profile/22",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"delete_profile",
+										"22"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "videos",
+					"item": [
+						{
+							"name": "show all videos by course",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "22|NAcXFEKBjdDdAZsqBkxIdEksBKr4JvXuVgv9gDKLab68cbc8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/all_videos_by_course/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"all_videos_by_course",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all videos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "22|NAcXFEKBjdDdAZsqBkxIdEksBKr4JvXuVgv9gDKLab68cbc8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/all_videos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"all_videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show video",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/show_video/3/25",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"show_video",
+										"3",
+										"25"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add video",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "29|yJz3tjnGU1DygnKeZ4PG7ZJgvMoL62CG5Qq6To8N0218a701",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "video 1",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "description 1",
+											"type": "text"
+										},
+										{
+											"key": "url",
+											"type": "file",
+											"src": "postman-cloud:///1ef5b213-79d2-4a70-9d1c-20ab4eed9d26"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/create_video/12",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"create_video",
+										"12"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update video",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "22|okLnYZefFE8cUdrnFFz0XVE4OAkTWhTl5delQaMt315422d2",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "video 111",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "description 111",
+											"type": "text"
+										},
+										{
+											"key": "url",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/update_video/12/108",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"update_video",
+										"12",
+										"108"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete video",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/delete_video/1/9",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"delete_video",
+										"1",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add like",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/add_like/21",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"add_like",
+										"21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remove like",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/remove_like/21",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"remove_like",
+										"21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add dislike",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/add_dislike/21",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"add_dislike",
+										"21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remove dislike",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/remove_dislike/21",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"remove_dislike",
+										"21"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "course",
+					"item": [
+						{
+							"name": "show all courses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/all_courses",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"all_courses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all courses by subject",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/all_courses_by_subject/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"all_courses_by_subject",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show course",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/show_course/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"show_course",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create course",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "course 100",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "content for course 100",
+											"type": "text"
+										},
+										{
+											"key": "poster",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "requirements",
+											"value": "requirements 100",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "2000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/create_course",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"create_course"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update course",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "course 3",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "content for course 3",
+											"type": "text"
+										},
+										{
+											"key": "poster",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "requirements",
+											"value": "requirements 3",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "1500",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/update_course/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"update_course",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete course",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/delete_course/9",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"delete_course",
+										"9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "quizzes",
+					"item": [
+						{
+							"name": "show all quizess",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "22|NAcXFEKBjdDdAZsqBkxIdEksBKr4JvXuVgv9gDKLab68cbc8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/all_quizzes",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"all_quizzes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "all_quizzes_by_course",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "22|NAcXFEKBjdDdAZsqBkxIdEksBKr4JvXuVgv9gDKLab68cbc8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/all_quizzes_by_course/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"all_quizzes_by_course",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create quiz",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/create_quiz/10",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"create_quiz",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete quiz",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/delete_quiz/8",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"delete_quiz",
+										"8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show_quizzes_with_question_and_answer",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/show_quizzes_with_question_and_answer",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"show_quizzes_with_question_and_answer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "go to quiz",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/go_to_quiz/10",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"go_to_quiz",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "submit quiz",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"answers\": [364, 368, 372, 376, 380, 384, 388, 392, 396, 400]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/submit_quiz/10",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"submit_quiz",
+										"10"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "answers",
+					"item": [
+						{
+							"name": "create answer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "choice",
+											"value": "bb",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/create_answer/35",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"create_answer",
+										"35"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_answer",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/delete_answer/41",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"delete_answer",
+										"41"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_answer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "choice",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/update_answer/42",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"update_answer",
+										"42"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show_answer",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/show_answer/7",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"show_answer",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "questions",
+					"item": [
+						{
+							"name": "create queestion",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "question",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/create_question/61",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"create_question",
+										"61"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update question",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "question",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/update_question/35",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"update_question",
+										"35"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete question",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/delete_question/7",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"delete_question",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show question",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/show_question/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"show_question",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "comments and replies",
+					"item": [
+						{
+							"name": "get_comments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/get_comments/640",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"get_comments",
+										"640"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_replies",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/get_replies/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"get_replies",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add_comment",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "comment",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/add_comment/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"add_comment",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add_reply",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "comment",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/add_reply/4",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"add_reply",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_comment",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/delete_comment/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"delete_comment",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "reports",
+					"item": [
+						{
+							"name": "get all reports",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/get_reports",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"get_reports"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "search",
+					"item": [
+						{
+							"name": "search course",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "course_name",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/search_course/21",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"search_course",
+										"21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "search video",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "video_id",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/search_video/10",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"search_video",
+										"10"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "transactions",
+					"item": [
+						{
+							"name": "get all transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/dashboard/all_transactions",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"dashboard",
+										"all_transactions"
 									]
 								}
 							},
